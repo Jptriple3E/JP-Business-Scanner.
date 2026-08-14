@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>JP Business Scanner</title>
+
+  <meta
+    name="description"
+    content="Scan business websites for SEO, lead generation, trust and growth opportunities."
+  >
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+      color: #172033;
+    }
+
+    .container {
+      width: 92%;
+      max-width: 850px;
+      margin: 40px auto;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .hero h1 {
+      font-size: 34px;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      color: #667085;
+      line-height: 1.6;
+    }
+
+    .card {
+      background: white;
+      padding: 24px;
+      border-radius: 16px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin: 18px 0 7px;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #d0d5dd;
+      border-radius: 10px;
+      font-size: 16px;
+    }
+
+    .hint {
+      font-size: 13px;
+      color: #667085;
+      margin-top: 5px;
+    }
+
+    button {
+      width: 100%;
+      padding: 15px;
+      margin-top: 25px;
+      border: none;
+      border-radius: 10px;
+      background: #111827;
+      color: white;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:disabled {
+      opacity: 0.6;
+    }
+
+    #status {
+      text-align: center;
+      margin: 20px 0;
+      font-weight: bold;
+    }
+
+    #report {
+      white-space: pre-wrap;
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    .success {
+      color: #067647;
+    }
+
+    .error {
+      color: #b42318;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        margin: 25px auto;
+      }
+
+      .hero h1 {
+        font-size: 28px;
+      }
+
+      .card {
+        padding: 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="hero">
+      <h1>JP Business Scanner</h1>
+
+      <p>
+        Find website gaps that may be limiting
+        leads, trust and business growth.
+      </p>
+    </div>
+
+    <div class="card">
+
+      <label for="website">
+        Business Website
+      </label>
+
+      <input
+        id="website"
+        type="url"
+        placeholder="https://example.com"
+      >
+
+      <label for="visitors">
+        Monthly Visitors
+      </label>
+
+      <input
+        id="visitors"
+        type="number"
+        placeholder="Optional"
+      >
+
+      <div class="hint">
+        Optional — use actual analytics data when available.
+      </div>
+
+      <label for="conversion">
+        Current Conversion Rate (%)
+      </label>
+
+      <input
+        id="conversion"
+        type="number"
+        step="0.01"
+        placeholder="Optional"
+      >
+
+      <div class="hint">
+        Optional — used for revenue estimates.
+      </div>
+
+      <label for="value">
+        Average Customer Value (USD)
+      </label>
+
+      <input
+        id="value"
+        type="number"
+        placeholder="Optional"
+      >
+
+      <div class="hint">
+        Optional — estimated value of one customer.
+      </div>
+
+      <button id="scanButton">
+        SCAN WEBSITE
+      </button>
+
+    </div>
+
+    <div id="status"></div>
+
+    <div
+      class="card"
+      id="reportCard"
+      style="display:none;"
+    >
+      <div id="report"></div>
+    </div>
+
+  </div>
+
+  <script>
+
+    const API_URL =
+      "https://jp-business-scanner-v7.emmanueleboh219.workers.dev/";
+
+    const scanButton =
+      document.getElementById("scanButton");
+
+    const status =
+      document.getElementById("status");
+
+    const reportCard =
+      document.getElementById("reportCard");
+
+    const report =
+      document.getElementById("report");
+
+    scanButton.addEventListener(
+      "click",
+      async function () {
+
+        const website =
+          document
+            .getElementById("website")
+            .value
+            .trim();
+
+        const visitors =
+          document
+            .getElementById("visitors")
+            .value
+            .trim();
+
+        const conversion =
+          document
+            .getElementById("conversion")
+            .value
+            .trim();
+
+        const value =
+          document
+            .getElementById("value")
+            .value
+            .trim();
+
+        if (!website) {
+
+          status.textContent =
+            "Please enter a business website.";
+
+          status.className =
+            "error";
+
+          return;
+        }
+
+        scanButton.disabled = true;
+
+        scanButton.textContent =
+          "SCANNING...";
+
+        status.textContent =
+          "Scanning website. Please wait...";
+
+        status.className = "";
+
+        reportCard.style.display =
+          "none";
+
+        try {
+
+          const apiUrl =
+            new URL(API_URL);
+
+          apiUrl.searchParams.set(
+            "url",
+            website
+          );
+
+          if (visitors) {
+
+            apiUrl.searchParams.set(
+              "visitors",
+              visitors
+            );
+
+          }
+
+          if (conversion) {
+
+            apiUrl.searchParams.set(
+              "conversion",
+              conversion
+            );
+
+          }
+
+          if (value) {
+
+            apiUrl.searchParams.set(
+              "value",
+              value
+            );
+
+          }
+
+          const response =
+            await fetch(
+              apiUrl.toString()
+            );
+
+          const result =
+            await response.text();
+
+          if (!response.ok) {
+            throw new Error(result);
+          }
+
+          report.textContent =
+            result;
+
+          reportCard.style.display =
+            "block";
+
+          status.textContent =
+            "SCAN COMPLETE";
+
+          status.className =
+            "success";
+
+        } catch (error) {
+
+          status.textContent =
+            "Scan failed: " +
+            error.message;
+
+          status.className =
+            "error";
+
+        } finally {
+
+          scanButton.disabled =
+            false;
+
+          scanButton.textContent =
+            "SCAN WEBSITE";
+
+        }
+
+      }
+    );
+
+  </script>
+
+</body>
+  </html>
