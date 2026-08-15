@@ -1,180 +1,272 @@
-problemsoblemsDOCTYPE html><html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>JP Business Scanner</title><style>
-*{box-sizing:border-box}
-
-body{
-margin:0;
-font-family:Arial,sans-serif;
-background:#f4f7fb;
-color:#172033
+* {
+  box-sizing: border-box;
 }
 
-.container{
-width:92%;
-max-width:1000px;
-margin:35px auto
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f7fb;
+  color: #172033;
 }
 
-.hero{
-text-align:center;
-margin-bottom:30px
+.container {
+  width: 92%;
+  max-width: 1000px;
+  margin: 35px auto;
 }
 
-.hero h1{
-font-size:36px;
-margin-bottom:10px
+.hero {
+  text-align: center;
+  margin-bottom: 30px;
 }
 
-.hero p{
-color:#667085;
-font-size:17px;
-line-height:1.6
+.hero h1 {
+  font-size: 36px;
+  margin-bottom: 10px;
 }
 
-.card{
-background:#fff;
-padding:25px;
-border-radius:18px;
-box-shadow:0 8px 30px rgba(0,0,0,.07);
-margin-bottom:22px
+.hero p {
+  color: #667085;
+  font-size: 17px;
+  line-height: 1.6;
 }
 
-label{
-display:block;
-font-weight:bold;
-margin-top:16px;
-margin-bottom:7px
+.card {
+  background: white;
+  padding: 25px;
+  border-radius: 18px;
+  box-shadow: 0 8px 30px rgba(0,0,0,.07);
+  margin-bottom: 22px;
 }
 
-input{
-width:100%;
-padding:14px;
-border:1px solid #d0d5dd;
-border-radius:10px;
-font-size:16px
+label {
+  display: block;
+  font-weight: bold;
+  margin-top: 16px;
+  margin-bottom: 7px;
 }
 
-button{
-width:100%;
-padding:15px;
-margin-top:22px;
-border:0;
-border-radius:10px;
-background:#111827;
-color:#fff;
-font-size:17px;
-font-weight:bold;
-cursor:pointer
+input {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #d0d5dd;
+  border-radius: 10px;
+  font-size: 16px;
 }
 
-button:disabled{
-opacity:.6
+button {
+  width: 100%;
+  padding: 15px;
+  margin-top: 22px;
+  border: none;
+  border-radius: 10px;
+  background: #111827;
+  color: white;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
-#status{
-text-align:center;
-font-weight:bold;
-margin:20px 0
+button:disabled {
+  opacity: .6;
 }
 
-#reportArea{
-display:none
+#status {
+  text-align: center;
+  font-weight: bold;
+  margin: 20px 0;
 }
 
-.score{
-text-align:center;
-padding:30px
+#reportArea {
+  display: none;
 }
 
-.scoreNumber{
-font-size:64px;
-font-weight:bold
+.score {
+  text-align: center;
+  padding: 25px;
 }
 
-.scoreLabel{
-font-size:18px;
-color:#667085
+.scoreNumber {
+  font-size: 64px;
+  font-weight: bold;
 }
 
-.reportBox{
-white-space:pre-wrap;
-line-height:1.7;
-font-size:15px
+.scoreLabel {
+  font-size: 18px;
+  color: #667085;
 }
 
-.download{
-background:#067647;
-margin-top:0
+.rating {
+  margin-top: 8px;
+  font-size: 18px;
+  font-weight: bold;
 }
 
-.cta{
-text-align:center;
-background:#111827;
-color:#fff
+.sectionTitle {
+  font-size: 21px;
+  margin-bottom: 15px;
 }
 
-.cta h2{
-margin-top:0
+.reportBox {
+  line-height: 1.7;
+  font-size: 15px;
 }
 
-.cta p{
-color:#d0d5dd;
-line-height:1.6
+.reportSection {
+  margin-bottom: 25px;
 }
 
-.cta button{
-background:#fff;
-color:#111827
+.reportSection h3 {
+  margin-bottom: 10px;
 }
 
-.error{
-color:#b42318
+.reportItem {
+  padding: 14px;
+  border-radius: 10px;
+  background: #f8fafc;
+  margin-bottom: 10px;
+  border-left: 4px solid #111827;
 }
 
-.success{
-color:#067647
+.reportItem strong {
+  display: block;
+  margin-bottom: 6px;
 }
 
-@media(max-width:600px){
-.container{margin:20px auto}
-.hero h1{font-size:28px}
-.card{padding:18px}
-.scoreNumber{font-size:52px}
+.snapshot {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
 }
-</style></head><body><div class="container"><div class="hero">
-<h1>JP Business Scanner</h1><p>
-Discodivblemsite problems that may be costing your business
-leads, customers and growth.
+
+.snapshotItem {
+  background: #f8fafc;
+  padding: 12px;
+  border-radius: 10px;
+}
+
+.snapshotItem strong {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.breakdown {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.breakdownItem {
+  text-align: center;
+  background: #f8fafc;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.breakdownItem strong {
+  display: block;
+  font-size: 22px;
+}
+
+.cta {
+  text-align: center;
+  background: #111827;
+  color: white;
+}
+
+.cta h2 {
+  margin-top: 0;
+}
+
+.cta p {
+  color: #d0d5dd;
+  line-height: 1.6;
+}
+
+.cta button {
+  background: white;
+  color: #111827;
+}
+
+.download {
+  background: #067647;
+  margin-top: 12px;
+}
+
+.error {
+  color: #b42318;
+}
+
+.success {
+  color: #067647;
+}
+
+@media (max-width: 600px) {
+
+  .container {
+    margin: 20px auto;
+  }
+
+  .hero h1 {
+    font-size: 28px;
+  }
+
+  .card {
+    padding: 18px;
+  }
+
+  .scoreNumber {
+    font-size: 52px;
+  }
+
+  .snapshot,
+  .breakdown {
+    grid-template-columns: 1fr;
+  }
+}
+</style></head><body><div class="container">  <div class="hero"><h1>JP Business Scanner</h1>
+
+<p>
+  Discover website problems that may be costing your business
+  leads, customers and growth.
 </p>
-</div><div class="card"><label for="website">Business Website</label>
+
+  </div>  <div class="card"><label for="website">
+  Business Website
+</label>
 
 <input
-id="website"
-type="url"
-placeholder="https://example.com"
+  id="website"
+  type="url"
+  placeholder="https://example.com"
+>
 
-«»
-
-<label for="visitors">Monthly Visitors</label>
-
-<input
-id="visitors"
-type="number"
-placeholder="Optional"
-
-«»
-
-<label for="conversion">Current Conversion Rate (%)</label>
+<label for="visitors">
+  Monthly Visitors
+</label>
 
 <input
-id="conversion"
-type="number"
-step="0.01"
-placeholder="Optional"
-for
-  <label for="value">
+  id="visitors"
+  type="number"
+  placeholder="Optional"
+>
+
+<label for="conversion">
+  Current Conversion Rate (%)
+</label>
+
+<input
+  id="conversion"
+  type="number"
+  step="0.01"
+  placeholder="Optional"
+>
+
+<label for="value">
   Average Customer Value (USD)
 </label>
 
@@ -188,460 +280,715 @@ for
   SCAN A BUSINESS WEBSITE
 </button>
 
-</button></div><div id="status"></div><div id="reportArea"><div class="card score"><div class="scoreNumber" id="score">
---
-</div><div class="scoreLabel">
-Website Growth Score
-</div></div><div class="card"><h2>Website Growth Report</h2><div id="report" class="reportBox"></div><button
-id="downloadButton"
-class="download"
+  </div>  <div id="status"></div>  <div id="reportArea"><div class="card score">
 
-«»
+  <div class="scoreNumber" id="score">
+    --
+  </div>
 
-DOWNLOAD PDF REPORT
-</button>
+  <div class="scoreLabel">
+    Website Growth Score
+  </div>
 
-</div><div class="card cta"><h2>
-Want These Website Problems Fixed?
-</h2><p>
-We can help improve your website's SEO,
-lead generation, conversion opportunities
-and online presence.
-</p><button id="fixButton">
-GET THESE ISSUES FIXED
-</button></div></div></div><script>
+  <div class="rating" id="rating">
+  </div>
+
+</div>
+
+<div class="card">
+
+  <h2 class="sectionTitle">
+    Website Growth Report
+  </h2>
+
+  <div id="report" class="reportBox"></div>
+
+  <button
+    id="downloadButton"
+    class="download"
+    type="button"
+  >
+    DOWNLOAD REPORT
+  </button>
+
+</div>
+
+<div class="card cta">
+
+  <h2>
+    Want These Website Problems Fixed?
+  </h2>
+
+  <p>
+    We can help improve your website's SEO,
+    lead generation, conversion opportunities
+    and online presence.
+  </p>
+
+  <button id="fixButton" type="button">
+    GET THESE ISSUES FIXED
+  </button>
+
+</div>
+
+  </div></div><script>
 
 const API_URL =
-"https://jp-business-scanner1.emmanueleboh219.workers.dev/";
+  "https://jp-business-scanner1.emmanueleboh219.workers.dev/";
 
 const scanButton =
-document.getElementById("scanButton");
+  document.getElementById("scanButton");
 
 const status =
-document.getElementById("status");
+  document.getElementById("status");
 
 const reportArea =
-document.getElementById("reportArea");
+  document.getElementById("reportArea");
 
 const report =
-document.getElementById("report");
+  document.getElementById("report");
 
 const score =
-document.getElementById("score");
+  document.getElementById("score");
 
-let latestReport = "";
-let latestWebsite = "";
+const rating =
+  document.getElementById("rating");
+
+let latestResult = null;
+
+function escapeHTML(value) {
+
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+
+}
+
+function displayReport(data) {
+
+  latestResult = data;
+
+  score.textContent =
+    (data.score ?? "--") + "/100";
+
+  rating.textContent =
+    data.rating || "";
+
+  let html = "";
+
+  html += `
+    <div class="reportSection">
+      <h3>Website</h3>
+      <p>${escapeHTML(data.website)}</p>
+    </div>
+  `;
+
+  if (data.breakdown) {
+
+    html += `
+      <div class="reportSection">
+        <h3>Score Breakdown</h3>
+
+        <div class="breakdown">
+
+          <div class="breakdownItem">
+            <strong>${data.breakdown.seo}/30</strong>
+            SEO & Technical
+          </div>
+
+          <div class="breakdownItem">
+            <strong>${data.breakdown.lead}/40</strong>
+            Lead Generation
+          </div>
+
+          <div class="breakdownItem">
+            <strong>${data.breakdown.trust}/30</strong>
+            Trust & Growth
+          </div>
+
+        </div>
+      </div>
+    `;
+
+  }
+
+  const s = data.snapshot || {};
+
+  html += `
+    <div class="reportSection">
+      <h3>Website Snapshot</h3>
+
+      <div class="snapshot">
+
+        <div class="snapshotItem">
+          <strong>Page Title</strong>
+          ${escapeHTML(s.title)}
+        </div>
+
+        <div class="snapshotItem">
+          <strong>Meta Description</strong>
+          ${escapeHTML(s.description)}
+        </div>
+
+        <div class="snapshotItem">
+          <strong>H1 Headings</strong>
+          ${s.h1 ?? 0}
+        </div>
+
+        <div class="snapshotItem">
+          <strong>H2 Headings</strong>
+          ${s.h2 ?? 0}
+        </div>
+
+        <div class="snapshotItem">
+          <strong>Mobile Viewport</strong>
+          ${s.mobile ? "Detected" : "Not detected"}
+        </div>
+
+        <div class="snapshotItem">
+          <strong>HTTPS</strong>
+          ${s.https ? "Yes" : "No"}
+        </div>
+
+        <div class="snapshotItem">
+          <strong>Images</strong>
+          ${s.images ?? 0}
+        </div>
+
+        <div class="snapshotItem">
+          <strong>Missing ALT Text</strong>
+          ${s.missingAlt ?? 0}
+        </div>
+
+        <div class="snapshotItem">
+          <strong>Phone</strong>
+          ${s.phone ? "Detected" : "Not detected"}
+        </div>
+
+        <div class="snapshotItem">
+          <strong>Email</strong>
+          ${s.email ? "Detected" : "Not detected"}
+        </div>
+
+        <div class="snapshotItem">
+          <strong>WhatsApp</strong>
+          ${s.whatsapp ? "Detected" : "Not detected"}
+        </div>
+
+        <div class="snapshotItem">
+          <strong>Contact Form</strong>
+          ${s.form ? "Detected" : "Not detected"}
+        </div>
+
+        <div class="snapshotItem">
+          <strong>Booking</strong>
+          ${s.booking ? "Detected" : "Not detected"}
+        </div>
+
+        <div class="snapshotItem">
+          <strong>CTA</strong>
+          ${s.cta ? "Detected" : "Not detected"}
+        </div>
+
+        <div class="snapshotItem">
+          <strong>Reviews</strong>
+          ${s.reviews ? "Detected" : "Not detected"}
+        </div>
+
+        <div class="snapshotItem">
+          <strong>Address</strong>
+          ${s.address ? "Detected" : "Not detected"}
+        </div>
+
+        <div class="snapshotItem">
+          <strong>Google Maps</strong>
+          ${s.maps ? "Detected" : "Not detected"}
+        </div>
+
+        <div class="snapshotItem">
+          <strong>Structured Data</strong>
+          ${s.schema ? "Detected" : "Not detected"}
+        </div>
+
+        <div class="snapshotItem">
+          <strong>Analytics</strong>
+          ${s.analytics ? "Detected" : "Not detected"}
+        </div>
+
+      </div>
+    </div>
+  `;
+
+  const high =
+    data.highPriority || [];
+
+  html += `
+    <div class="reportSection">
+      <h3>High-Priority Problems</h3>
+  `;
+
+  if (high.length) {
+
+    high.forEach((item, index) => {
+
+      html += `
+        <div class="reportItem">
+          <strong>
+            ${index + 1}. ${escapeHTML(item.title)}
+          </strong>
+
+          <div>
+            <b>Why it matters:</b>
+            ${escapeHTML(item.why)}
+          </div>
+
+          <div>
+            <b>Recommended fix:</b>
+            ${escapeHTML(item.fix)}
+          </div>
+
+          <div>
+            <b>Service:</b>
+            ${escapeHTML(item.service)}
+          </div>
+        </div>
+      `;
+
+    });
+
+  } else {
+
+    html +=
+      "<p>No high-priority problems detected.</p>";
+
+  }
+
+  html += "</div>";
+
+  const medium =
+    data.mediumPriority || [];
+
+  html += `
+    <div class="reportSection">
+      <h3>Medium-Priority Opportunities</h3>
+  `;
+
+  if (medium.length) {
+
+    medium.forEach((item, index) => {
+
+      html += `
+        <div class="reportItem">
+          <strong>
+            ${index + 1}. ${escapeHTML(item.title)}
+          </strong>
+
+          <div>
+            <b>Why it matters:</b>
+            ${escapeHTML(item.why)}
+          </div>
+
+          <div>
+            <b>Recommended fix:</b>
+            ${escapeHTML(item.fix)}
+          </div>
+
+          <div>
+            <b>Service:</b>
+            ${escapeHTML(item.service)}
+          </div>
+        </div>
+      `;
+
+    });
+
+  } else {
+
+    html +=
+      "<p>No medium-priority opportunities detected.</p>";
+
+  }
+
+  html += "</div>";
+
+  const strengths =
+    data.strengths || [];
+
+  html += `
+    <div class="reportSection">
+      <h3>Current Strengths</h3>
+  `;
+
+  if (strengths.length) {
+
+    strengths.forEach(item => {
+
+      html += `
+        <div class="reportItem">
+          ✓ ${escapeHTML(item)}
+        </div>
+      `;
+
+    });
+
+  } else {
+
+    html +=
+      "<p>No major strengths detected.</p>";
+
+  }
+
+  html += "</div>";
+
+  if (data.revenue) {
+
+    const r = data.revenue;
+
+    html += `
+      <div class="reportSection">
+        <h3>Revenue Opportunity</h3>
+
+        <div class="reportItem">
+
+          <p>
+            <b>Monthly Visitors:</b>
+            ${r.visitors}
+          </p>
+
+          <p>
+            <b>Current Conversion:</b>
+            ${r.conversion}%
+          </p>
+
+          <p>
+            <b>Average Customer Value:</b>
+            $${Number(r.value).toFixed(2)}
+          </p>
+
+          <p>
+            <b>Estimated Customers:</b>
+            ${Number(r.customers).toFixed(1)}
+          </p>
+
+          <p>
+            <b>Estimated Monthly Revenue:</b>
+            $${Number(r.currentRevenue).toFixed(2)}
+          </p>
+
+          <p>
+            <b>Potential Additional Revenue:</b>
+            $${Number(r.additionalRevenue).toFixed(2)}
+          </p>
+
+        </div>
+      </div>
+    `;
+
+  } else {
+
+    html += `
+      <div class="reportSection">
+        <h3>Revenue Opportunity</h3>
+
+        <p>
+          No revenue assumptions were provided.
+        </p>
+
+        <p>
+          Add monthly visitors, conversion rate and
+          average customer value to generate an
+          illustrative revenue opportunity.
+        </p>
+      </div>
+    `;
+
+  }
+
+  html += `
+    <div class="reportSection">
+      <h3>Business Services You Can Offer</h3>
+
+      <div class="reportItem">
+        SEO optimization
+      </div>
+
+      <div class="reportItem">
+        Website conversion optimization
+      </div>
+
+      <div class="reportItem">
+        Lead-generation setup
+      </div>
+
+      <div class="reportItem">
+        WhatsApp integration
+      </div>
+
+      <div class="reportItem">
+        Review/testimonial implementation
+      </div>
+
+      <div class="reportItem">
+        Local SEO
+      </div>
+
+      <div class="reportItem">
+        Analytics and conversion tracking
+      </div>
+
+      <div class="reportItem">
+        Website technical fixes
+      </div>
+
+    </div>
+  `;
+
+  html += `
+    <div class="reportSection">
+      <h3>Important</h3>
+
+      <p>
+        This report is based on publicly accessible
+        website information. It cannot see private
+        Google Analytics, Search Console, CRM,
+        advertising data or actual revenue.
+        Some JavaScript-rendered content may not
+        be detected.
+      </p>
+
+    </div>
+  `;
+
+  report.innerHTML = html;
+
+}
 
 scanButton.addEventListener(
-"click",
-async function(){
+  "click",
+  async function() {
 
-const website =
-document.getElementById("website")
-.value.trim();
+    const website =
+      document.getElementById("website")
+      .value
+      .trim();
 
-const visitors =
-document.getElementById("visitors")
-.value.trim();
+    const visitors =
+      document.getElementById("visitors")
+      .value
+      .trim();
 
-const conversion =
-document.getElementById("conversion")
-.value.trim();
+    const conversion =
+      document.getElementById("conversion")
+      .value
+      .trim();
 
-const value =
-document.getElementById("value")
-.value.trim();
+    const value =
+      document.getElementById("value")
+      .value
+      .trim();
 
-if(!website){
+    if (!website) {
 
-status.textContent =
-"Please enter a business website.";
+      status.textContent =
+        "Please enter a business website.";
 
-status.className="error";
+      status.className =
+        "error";
 
-return;
-}
+      return;
 
-scanButton.disabled=true;
+    }
 
-scanButton.textContent=
-"SCANNING...";
+    let cleanWebsite =
+      website;
 
-status.textContent=
-"Analyzing website...";
+    if (
+      !cleanWebsite.startsWith("http://") &&
+      !cleanWebsite.startsWith("https://")
+    ) {
 
-status.className="";
+      cleanWebsite =
+        "https://" + cleanWebsite;
 
-reportArea.style.display="none";
+    }
 
-try{
+    scanButton.disabled =
+      true;
 
-const api=new URL(API_URL);
+    scanButton.textContent =
+      "SCANNING...";
 
-api.searchParams.set(
-"url",
-website
+    status.textContent =
+      "Analyzing website...";
+
+    status.className =
+      "";
+
+    reportArea.style.display =
+      "none";
+
+    try {
+
+      const api =
+        new URL(API_URL);
+
+      api.searchParams.set(
+        "url",
+        cleanWebsite
+      );
+
+      if (visitors)
+        api.searchParams.set(
+          "visitors",
+          visitors
+        );
+
+      if (conversion)
+        api.searchParams.set(
+          "conversion",
+          conversion
+        );
+
+      if (value)
+        api.searchParams.set(
+          "value",
+          value
+        );
+
+      const response =
+        await fetch(
+          api.toString()
+        );
+
+      const text =
+        await response.text();
+
+      let result;
+
+      try {
+
+        result =
+          JSON.parse(text);
+
+      } catch {
+
+        throw new Error(
+          text || "Invalid response from scanner."
+        );
+
+      }
+
+      if (!response.ok || result.error) {
+
+        throw new Error(
+          result.message ||
+          "The scanner could not complete the scan."
+        );
+
+      }
+
+      displayReport(result);
+
+      reportArea.style.display =
+        "block";
+
+      status.textContent =
+        "SCAN COMPLETE";
+
+      status.className =
+        "success";
+
+      window.scrollTo({
+        top: reportArea.offsetTop,
+        behavior: "smooth"
+      });
+
+    } catch (error) {
+
+      status.textContent =
+        "Scan failed: " +
+        error.message;
+
+      status.className =
+        "error";
+
+    } finally {
+
+      scanButton.disabled =
+        false;
+
+      scanButton.textContent =
+        "SCAN A BUSINESS WEBSITE";
+
+    }
+
+  }
 );
-
-if(visitors)
-api.searchParams.set(
-"visitors",
-visitors
-);
-
-if(conversion)
-api.searchParams.set(
-"conversion",
-conversion
-);
-
-if(value)
-api.searchParams.set(
-"value",
-value
-);
-
-const response=
-await fetch(api.toString());
-
-const result=
-await response.text();
-
-if(!response.ok)
-throw new Error(result);
-
-let data;
-
-try{
-data=JSON.parse(result);
-}catch{
-throw new Error(
-"Invalid report returned by V10 Worker."
-);
-}
-
-if(data.error)
-throw new Error(
-data.message || "Scan failed."
-);
-
-latestReport=data;
-latestWebsite=website;
-
-score.textContent=
-(data.score ?? "--")+"/100";
-
-report.textContent=
-formatReport(data);
-
-reportArea.style.display="block";
-
-status.textContent=
-"SCAN COMPLETE";
-
-status.className="success";
-
-}catch(error){
-
-status.textContent=
-"Scan failed: "+error.message;
-
-status.className="error";
-
-}finally{
-
-scanButton.disabled=false;
-
-scanButton.textContent=
-"SCAN WEBSITE";
-
-}
-
-});
-
-function formatReport(data){
-
-let text="";
-
-text+="JP BUSINESS GROWTH REPORT V10\n\n";
-
-text+="WEBSITE\n";
-text+=data.website+"\n\n";
-
-text+="OVERALL SCORE\n";
-text+=data.score+"/100 — "+data.rating+"\n\n";
-
-text+="SCORE BREAKDOWN\n";
-text+="SEO & TECHNICAL: "+
-(data.breakdown?.seo ?? 0)+"/30\n";
-
-text+="LEAD GENERATION: "+
-(data.breakdown?.lead ?? 0)+"/40\n";
-
-text+="TRUST & GROWTH: "+
-(data.breakdown?.trust ?? 0)+"/30\n\n";
-
-text+="WEBSITE SNAPSHOT\n\n";
-
-const s=data.snapshot||{};
-
-text+="PAGE TITLE\n";
-text+=(s.title||"Missing")+"\n\n";
-
-text+="META DESCRIPTION\n";
-text+=(s.description||"Missing")+"\n\n";
-
-text+="H1 HEADINGS\n";
-text+=(s.h1??0)+"\n\n";
-
-text+="H2 HEADINGS\n";
-text+=(s.h2??0)+"\n\n";
-
-text+="MOBILE VIEWPORT\n";
-text+=(s.mobile?"Detected":"Missing")+"\n\n";
-
-text+="HTTPS\n";
-text+=(s.https?"Yes":"No")+"\n\n";
-
-text+="IMAGES\n";
-text+=(s.images??0)+"\n\n";
-
-text+="MISSING ALT TEXT\n";
-text+=(s.missingAlt??0)+"\n\n";
-
-text+="PHONE\n";
-text+=(s.phone?"Detected":"Not detected")+"\n\n";
-
-text+="EMAIL\n";
-text+=(s.email?"Detected":"Not detected")+"\n\n";
-
-text+="WHATSAPP\n";
-text+=(s.whatsapp?"Detected":"Not detected")+"\n\n";
-
-text+="CONTACT FORM\n";
-text+=(s.form?"Detected":"Not detected")+"\n\n";
-
-text+="BOOKING\n";
-text+=(s.booking?"Detected":"Not detected")+"\n\n";
-
-text+="CTA\n";
-text+=(s.cta?"Detected":"Not detected")+"\n\n";
-
-text+="REVIEWS / TESTIMONIALS\n";
-text+=(s.reviews?"Detected":"Not detected")+"\n\n";
-
-text+="ADDRESS / LOCATION\n";
-text+=(s.address?"Detected":"Not detected")+"\n\n";
-
-text+="GOOGLE MAPS\n";
-text+=(s.maps?"Detected":"Not detected")+"\n\n";
-
-text+="STRUCTURED DATA\n";
-text+=(s.schema?"Detected":"Not detected")+"\n\n";
-
-text+="ANALYTICS\n";
-text+=(s.analytics?"Detected":"Not detected")+"\n\n";
-
-text+="SOCIAL MEDIA\n";
-text+=(s.social?"Detected":"Not detected")+"\n\n";
-
-text+="HIGH-PRIORITY PROBLEMS\n\n";
-
-if(data.highPriority?.length){
-
-data.highPriority.forEach(
-(x,i)=>{
-
-text+=(i+1)+". "+x.title+"\n";
-text+="Why it matters: "+x.why+"\n";
-text+="Recommended action: "+x.fix+"\n";
-text+="Service: "+x.service+"\n\n";
-
-});
-
-}else{
-
-text+="No high-priority problems detected.\n\n";
-
-}
-
-text+="MEDIUM-PRIORITY OPPORTUNITIES\n\n";
-
-if(data.mediumPriority?.length){
-
-data.mediumPriority.forEach(
-(x,i)=>{
-
-text+=(i+1)+". "+x.title+"\n";
-text+="Why it matters: "+x.why+"\n";
-text+="Recommended action: "+x.fix+"\n";
-text+="Service: "+x.service+"\n\n";
-
-});
-
-}else{
-
-text+="No medium-priority opportunities detected.\n\n";
-
-}
-
-text+="CURRENT STRENGTHS\n\n";
-
-if(data.strengths?.length){
-
-data.strengths.forEach(
-x=>{
-text+="✓ "+x+"\n";
-});
-
-}else{
-
-text+="No major strengths detected.\n";
-
-}
-
-text+="\nREVENUE OPPORTUNITY\n\n";
-
-if(data.revenue){
-
-const r=data.revenue;
-
-text+="MONTHLY VISITORS: "+
-r.visitors+"\n";
-
-text+="CURRENT CONVERSION: "+
-r.conversion+"%\n";
-
-text+="AVERAGE CUSTOMER VALUE: $"+
-Number(r.value).toFixed(2)+"\n";
-
-text+="ESTIMATED CUSTOMERS: "+
-Number(r.customers).toFixed(1)+"\n";
-
-text+="ESTIMATED MONTHLY REVENUE: $"+
-Number(r.currentRevenue).toFixed(2)+"\n";
-
-text+="50% CONVERSION IMPROVEMENT: $"+
-Number(r.improvedRevenue).toFixed(2)+"\n";
-
-text+="POTENTIAL ADDITIONAL REVENUE: $"+
-Number(r.additionalRevenue).toFixed(2)+"\n";
-
-}else{
-
-text+="No revenue assumptions provided.\n";
-
-}
-
-text+="\nBUSINESS SERVICES YOU CAN OFFER\n\n";
-
-(data.services||[]).forEach(
-x=>{
-text+="• "+x+"\n";
-});
-
-text+="\nIMPORTANT\n\n";
-
-text+="This report is based on publicly accessible website information. It cannot see private Google Analytics, Search Console, CRM, advertising data or actual revenue. Some JavaScript-rendered content may not be detected.";
-
-return text;
-
-}
 
 document.getElementById(
-"downloadButton"
+  "downloadButton"
 ).addEventListener(
-"click",
-function(){
+  "click",
+  function() {
 
-if(!latestReport)return;
+    if (!latestResult) {
 
-const r=latestReport;
+      alert("Please scan a website first.");
 
-const reportText=
-formatReport(r);
+      return;
 
-const win=
-window.open(
-"",
-"_blank"
+    }
+
+    const text =
+      JSON.stringify(
+        latestResult,
+        null,
+        2
+      );
+
+    const blob =
+      new Blob(
+        [text],
+        { type: "application/json" }
+      );
+
+    const url =
+      URL.createObjectURL(blob);
+
+    const a =
+      document.createElement("a");
+
+    a.href =
+      url;
+
+    a.download =
+      "JP-Business-Growth-Report.json";
+
+    document.body.appendChild(a);
+
+    a.click();
+
+    a.remove();
+
+    URL.revokeObjectURL(url);
+
+  }
 );
-
-if(!win){
-
-alert(
-"Please allow pop-ups to download the PDF."
-);
-
-return;
-
-}
-
-win.document.write(`
-<html>
-<head>
-<title>JP Business Growth Report</title>
-
-<style>
-
-body{
-font-family:Arial,sans-serif;
-padding:40px;
-color:#172033;
-line-height:1.6;
-}
-
-h1{
-font-size:26px;
-}
-
-pre{
-white-space:pre-wrap;
-font-family:Arial,sans-serif;
-font-size:13px;
-}
-
-@media print{
-body{
-padding:20px;
-}
-}
-
-</style></head><body><h1>JP Business Growth Report</h1><pre>${escapeHtml(reportText)}</pre><script>
-window.onload=function(){
-window.print();
-};
-<\/script>
-
-</body>
-</html>
-`);
-
-win.document.close();
-
-});
-
-function escapeHtml(text){
-
-return text
-.replace(/&/g,"&amp;")
-.replace(/</g,"&lt;")
-.replace(/>/g,"&gt;")
-.replace(/"/g,"&quot;")
-.replace(/'/g,"&#039;");
-
-}
 
 document.getElementById(
-"fixButton"
+  "fixButton"
 ).addEventListener(
-"click",
-function(){
+  "click",
+  function() {
 
-window.location.href=
-"mailto:jpdigitalai@gmail.com?subject=Website%20Growth%20Fix%20Request&body=Hello%20JP%20Digital%20AI,%0A%0AI%20would%20like%20help%20fixing%20the%20website%20issues%20identified%20in%20my%20JP%20Business%20Growth%20Report.";
+    window.location.href =
+      "mailto:jpdigitalai@gmail.com?subject=Website%20Growth%20Fix";
 
-});
+  }
+);
 
 </script></body>
-                                                              </html>
+  </html>
