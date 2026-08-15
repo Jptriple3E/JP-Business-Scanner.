@@ -1,466 +1,646 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>JP Business Scanner</title><style>
+*{box-sizing:border-box}
 
-<title>JP Business Scanner</title>
-
-<style>
-* {
-  box-sizing: border-box;
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:#f4f7fb;
+color:#172033
 }
 
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f4f7fb;
-  color: #172033;
+.container{
+width:92%;
+max-width:1000px;
+margin:35px auto
 }
 
-.container {
-  width: 92%;
-  max-width: 1000px;
-  margin: 35px auto;
+.hero{
+text-align:center;
+margin-bottom:30px
 }
 
-.hero {
-  text-align: center;
-  margin-bottom: 30px;
+.hero h1{
+font-size:36px;
+margin-bottom:10px
 }
 
-.hero h1 {
-  font-size: 36px;
-  margin-bottom: 10px;
+.hero p{
+color:#667085;
+font-size:17px;
+line-height:1.6
 }
 
-.hero p {
-  color: #667085;
-  font-size: 17px;
-  line-height: 1.6;
+.card{
+background:#fff;
+padding:25px;
+border-radius:18px;
+box-shadow:0 8px 30px rgba(0,0,0,.07);
+margin-bottom:22px
 }
 
-.card {
-  background: white;
-  padding: 25px;
-  border-radius: 18px;
-  box-shadow: 0 8px 30px rgba(0,0,0,.07);
-  margin-bottom: 22px;
+label{
+display:block;
+font-weight:bold;
+margin-top:16px;
+margin-bottom:7px
 }
 
-label {
-  display: block;
-  font-weight: bold;
-  margin-top: 16px;
-  margin-bottom: 7px;
+input{
+width:100%;
+padding:14px;
+border:1px solid #d0d5dd;
+border-radius:10px;
+font-size:16px
 }
 
-input {
-  width: 100%;
-  padding: 14px;
-  border: 1px solid #d0d5dd;
-  border-radius: 10px;
-  font-size: 16px;
+button{
+width:100%;
+padding:15px;
+margin-top:22px;
+border:0;
+border-radius:10px;
+background:#111827;
+color:#fff;
+font-size:17px;
+font-weight:bold;
+cursor:pointer
 }
 
-button {
-  width: 100%;
-  padding: 15px;
-  margin-top: 22px;
-  border: none;
-  border-radius: 10px;
-  background: #111827;
-  color: white;
-  font-size: 17px;
-  font-weight: bold;
-  cursor: pointer;
+button:disabled{
+opacity:.6
 }
 
-button:disabled {
-  opacity: .6;
+#status{
+text-align:center;
+font-weight:bold;
+margin:20px 0
 }
 
-#status {
-  text-align: center;
-  font-weight: bold;
-  margin: 20px 0;
+#reportArea{
+display:none
 }
 
-#reportArea {
-  display: none;
+.score{
+text-align:center;
+padding:30px
 }
 
-.score {
-  text-align: center;
-  padding: 25px;
+.scoreNumber{
+font-size:64px;
+font-weight:bold
 }
 
-.scoreNumber {
-  font-size: 64px;
-  font-weight: bold;
+.scoreLabel{
+font-size:18px;
+color:#667085
 }
 
-.scoreLabel {
-  font-size: 18px;
-  color: #667085;
+.reportBox{
+white-space:pre-wrap;
+line-height:1.7;
+font-size:15px
 }
 
-.sectionTitle {
-  font-size: 21px;
-  margin-bottom: 15px;
+.download{
+background:#067647;
+margin-top:0
 }
 
-.reportBox {
-  white-space: pre-wrap;
-  line-height: 1.7;
-  font-size: 15px;
+.cta{
+text-align:center;
+background:#111827;
+color:#fff
 }
 
-.cta {
-  text-align: center;
-  background: #111827;
-  color: white;
+.cta h2{
+margin-top:0
 }
 
-.cta h2 {
-  margin-top: 0;
+.cta p{
+color:#d0d5dd;
+line-height:1.6
 }
 
-.cta p {
-  color: #d0d5dd;
-  line-height: 1.6;
+.cta button{
+background:#fff;
+color:#111827
 }
 
-.cta button {
-  background: white;
-  color: #111827;
+.error{
+color:#b42318
 }
 
-.error {
-  color: #b42318;
+.success{
+color:#067647
 }
 
-.success {
-  color: #067647;
+@media(max-width:600px){
+.container{margin:20px auto}
+.hero h1{font-size:28px}
+.card{padding:18px}
+.scoreNumber{font-size:52px}
 }
+</style></head><body><div class="container"><div class="hero">
+<h1>JP Business Scanner</h1><p>
+Discover website problems that may be costing your business
+leads, customers and growth.
+</p>
+</div><div class="card"><label for="website">Business Website</label>
 
-@media (max-width: 600px) {
+<input
+id="website"
+type="url"
+placeholder="https://example.com"
 
-  .container {
-    margin: 20px auto;
-  }
+«»
 
-  .hero h1 {
-    font-size: 28px;
-  }
+<label for="visitors">Monthly Visitors</label>
 
-  .card {
-    padding: 18px;
-  }
+<input
+id="visitors"
+type="number"
+placeholder="Optional"
 
-  .scoreNumber {
-    font-size: 52px;
-  }
-}
-</style>
-</head>
+«»
 
-<body>
+<label for="conversion">Current Conversion Rate (%)</label>
 
-<div class="container">
+<input
+id="conversion"
+type="number"
+step="0.01"
+placeholder="Optional"
 
-  <div class="hero">
+«»
 
-    <h1>JP Business Scanner</h1>
+<label for="value">Average Customer Value (USD)</label>
 
-    <p>
-      Discover website problems that may be costing your business
-      leads, customers and growth.
-    </p>
+<input
+id="value"
+type="number"
+placeholder="Optional"
 
-  </div>
+«»
 
-  <div class="card">
+<button id="scanButton">
+SCAN WEBSITE
+</button></div><div id="status"></div><div id="reportArea"><div class="card score"><div class="scoreNumber" id="score">
+--
+</div><div class="scoreLabel">
+Website Growth Score
+</div></div><div class="card"><h2>Website Growth Report</h2><div id="report" class="reportBox"></div><button
+id="downloadButton"
+class="download"
 
-    <label for="website">
-      Business Website
-    </label>
+«»
 
-    <input
-      id="website"
-      type="url"
-      placeholder="https://example.com"
-    >
+DOWNLOAD PDF REPORT
+</button>
 
-    <label for="visitors">
-      Monthly Visitors
-    </label>
-
-    <input
-      id="visitors"
-      type="number"
-      placeholder="Optional"
-    >
-
-    <label for="conversion">
-      Current Conversion Rate (%)
-    </label>
-
-    <input
-      id="conversion"
-      type="number"
-      step="0.01"
-      placeholder="Optional"
-    >
-
-    <label for="value">
-      Average Customer Value (USD)
-    </label>
-
-    <input
-      id="value"
-      type="number"
-      placeholder="Optional"
-    >
-
-    <button id="scanButton">
-      SCAN WEBSITE
-    </button>
-
-  </div>
-
-  <div id="status"></div>
-
-  <div id="reportArea">
-
-    <div class="card score">
-
-      <div class="scoreNumber" id="score">
-        --
-      </div>
-
-      <div class="scoreLabel">
-        Website Growth Score
-      </div>
-
-    </div>
-
-    <div class="card">
-
-      <h2 class="sectionTitle">
-        Website Growth Report
-      </h2>
-
-      <div id="report" class="reportBox"></div>
-
-    </div>
-
-    <div class="card cta">
-
-      <h2>
-        Want These Website Problems Fixed?
-      </h2>
-
-      <p>
-        We can help improve your website's SEO,
-        lead generation, conversion opportunities
-        and online presence.
-      </p>
-
-      <button id="fixButton">
-        GET THESE ISSUES FIXED
-      </button>
-
-    </div>
-
-  </div>
-
-</div>
-
-<script>
+</div><div class="card cta"><h2>
+Want These Website Problems Fixed?
+</h2><p>
+We can help improve your website's SEO,
+lead generation, conversion opportunities
+and online presence.
+</p><button id="fixButton">
+GET THESE ISSUES FIXED
+</button></div></div></div><script>
 
 const API_URL =
-  "https://jp-business-scanner-v9.emmanueleboh219.workers.dev/";
+"https://jp-business-scanner1.emmanueleboh219.workers.dev/";
 
 const scanButton =
-  document.getElementById("scanButton");
+document.getElementById("scanButton");
 
 const status =
-  document.getElementById("status");
+document.getElementById("status");
 
 const reportArea =
-  document.getElementById("reportArea");
+document.getElementById("reportArea");
 
 const report =
-  document.getElementById("report");
+document.getElementById("report");
 
 const score =
-  document.getElementById("score");
+document.getElementById("score");
+
+let latestReport = "";
+let latestWebsite = "";
 
 scanButton.addEventListener(
-  "click",
-  async function() {
+"click",
+async function(){
 
-    const website =
-      document.getElementById("website")
-      .value
-      .trim();
+const website =
+document.getElementById("website")
+.value.trim();
 
-    const visitors =
-      document.getElementById("visitors")
-      .value
-      .trim();
+const visitors =
+document.getElementById("visitors")
+.value.trim();
 
-    const conversion =
-      document.getElementById("conversion")
-      .value
-      .trim();
+const conversion =
+document.getElementById("conversion")
+.value.trim();
 
-    const value =
-      document.getElementById("value")
-      .value
-      .trim();
+const value =
+document.getElementById("value")
+.value.trim();
 
-    if (!website) {
+if(!website){
 
-      status.textContent =
-        "Please enter a business website.";
+status.textContent =
+"Please enter a business website.";
 
-      status.className =
-        "error";
+status.className="error";
 
-      return;
-    }
+return;
+}
 
-    scanButton.disabled = true;
+scanButton.disabled=true;
 
-    scanButton.textContent =
-      "SCANNING...";
+scanButton.textContent=
+"SCANNING...";
 
-    status.textContent =
-      "Analyzing website...";
+status.textContent=
+"Analyzing website...";
 
-    status.className = "";
+status.className="";
 
-    reportArea.style.display =
-      "none";
+reportArea.style.display="none";
 
-    try {
+try{
 
-      const api =
-        new URL(API_URL);
+const api=new URL(API_URL);
 
-      api.searchParams.set(
-        "url",
-        website
-      );
-
-      if (visitors) {
-
-        api.searchParams.set(
-          "visitors",
-          visitors
-        );
-
-      }
-
-      if (conversion) {
-
-        api.searchParams.set(
-          "conversion",
-          conversion
-        );
-
-      }
-
-      if (value) {
-
-        api.searchParams.set(
-          "value",
-          value
-        );
-
-      }
-
-      const response =
-        await fetch(
-          api.toString()
-        );
-
-      const result =
-        await response.text();
-
-      if (!response.ok) {
-
-        throw new Error(result);
-
-      }
-
-      report.textContent =
-        result;
-
-      const scoreMatch =
-        result.match(
-          /OVERALL SCORE\s+(\d+)\/100/
-        );
-
-      if (scoreMatch) {
-
-        score.textContent =
-          scoreMatch[1] + "/100";
-
-      } else {
-
-        score.textContent =
-          "--";
-
-      }
-
-      reportArea.style.display =
-        "block";
-
-      status.textContent =
-        "SCAN COMPLETE";
-
-      status.className =
-        "success";
-
-    } catch (error) {
-
-      status.textContent =
-        "Scan failed: " +
-        error.message;
-
-      status.className =
-        "error";
-
-    } finally {
-
-      scanButton.disabled =
-        false;
-
-      scanButton.textContent =
-        "SCAN WEBSITE";
-
-    }
-
-  }
+api.searchParams.set(
+"url",
+website
 );
+
+if(visitors)
+api.searchParams.set(
+"visitors",
+visitors
+);
+
+if(conversion)
+api.searchParams.set(
+"conversion",
+conversion
+);
+
+if(value)
+api.searchParams.set(
+"value",
+value
+);
+
+const response=
+await fetch(api.toString());
+
+const result=
+await response.text();
+
+if(!response.ok)
+throw new Error(result);
+
+let data;
+
+try{
+data=JSON.parse(result);
+}catch{
+throw new Error(
+"Invalid report returned by V10 Worker."
+);
+}
+
+if(data.error)
+throw new Error(
+data.message || "Scan failed."
+);
+
+latestReport=data;
+latestWebsite=website;
+
+score.textContent=
+(data.score ?? "--")+"/100";
+
+report.textContent=
+formatReport(data);
+
+reportArea.style.display="block";
+
+status.textContent=
+"SCAN COMPLETE";
+
+status.className="success";
+
+}catch(error){
+
+status.textContent=
+"Scan failed: "+error.message;
+
+status.className="error";
+
+}finally{
+
+scanButton.disabled=false;
+
+scanButton.textContent=
+"SCAN WEBSITE";
+
+}
+
+});
+
+function formatReport(data){
+
+let text="";
+
+text+="JP BUSINESS GROWTH REPORT V10\n\n";
+
+text+="WEBSITE\n";
+text+=data.website+"\n\n";
+
+text+="OVERALL SCORE\n";
+text+=data.score+"/100 — "+data.rating+"\n\n";
+
+text+="SCORE BREAKDOWN\n";
+text+="SEO & TECHNICAL: "+
+(data.breakdown?.seo ?? 0)+"/30\n";
+
+text+="LEAD GENERATION: "+
+(data.breakdown?.lead ?? 0)+"/40\n";
+
+text+="TRUST & GROWTH: "+
+(data.breakdown?.trust ?? 0)+"/30\n\n";
+
+text+="WEBSITE SNAPSHOT\n\n";
+
+const s=data.snapshot||{};
+
+text+="PAGE TITLE\n";
+text+=(s.title||"Missing")+"\n\n";
+
+text+="META DESCRIPTION\n";
+text+=(s.description||"Missing")+"\n\n";
+
+text+="H1 HEADINGS\n";
+text+=(s.h1??0)+"\n\n";
+
+text+="H2 HEADINGS\n";
+text+=(s.h2??0)+"\n\n";
+
+text+="MOBILE VIEWPORT\n";
+text+=(s.mobile?"Detected":"Missing")+"\n\n";
+
+text+="HTTPS\n";
+text+=(s.https?"Yes":"No")+"\n\n";
+
+text+="IMAGES\n";
+text+=(s.images??0)+"\n\n";
+
+text+="MISSING ALT TEXT\n";
+text+=(s.missingAlt??0)+"\n\n";
+
+text+="PHONE\n";
+text+=(s.phone?"Detected":"Not detected")+"\n\n";
+
+text+="EMAIL\n";
+text+=(s.email?"Detected":"Not detected")+"\n\n";
+
+text+="WHATSAPP\n";
+text+=(s.whatsapp?"Detected":"Not detected")+"\n\n";
+
+text+="CONTACT FORM\n";
+text+=(s.form?"Detected":"Not detected")+"\n\n";
+
+text+="BOOKING\n";
+text+=(s.booking?"Detected":"Not detected")+"\n\n";
+
+text+="CTA\n";
+text+=(s.cta?"Detected":"Not detected")+"\n\n";
+
+text+="REVIEWS / TESTIMONIALS\n";
+text+=(s.reviews?"Detected":"Not detected")+"\n\n";
+
+text+="ADDRESS / LOCATION\n";
+text+=(s.address?"Detected":"Not detected")+"\n\n";
+
+text+="GOOGLE MAPS\n";
+text+=(s.maps?"Detected":"Not detected")+"\n\n";
+
+text+="STRUCTURED DATA\n";
+text+=(s.schema?"Detected":"Not detected")+"\n\n";
+
+text+="ANALYTICS\n";
+text+=(s.analytics?"Detected":"Not detected")+"\n\n";
+
+text+="SOCIAL MEDIA\n";
+text+=(s.social?"Detected":"Not detected")+"\n\n";
+
+text+="HIGH-PRIORITY PROBLEMS\n\n";
+
+if(data.highPriority?.length){
+
+data.highPriority.forEach(
+(x,i)=>{
+
+text+=(i+1)+". "+x.title+"\n";
+text+="Why it matters: "+x.why+"\n";
+text+="Recommended action: "+x.fix+"\n";
+text+="Service: "+x.service+"\n\n";
+
+});
+
+}else{
+
+text+="No high-priority problems detected.\n\n";
+
+}
+
+text+="MEDIUM-PRIORITY OPPORTUNITIES\n\n";
+
+if(data.mediumPriority?.length){
+
+data.mediumPriority.forEach(
+(x,i)=>{
+
+text+=(i+1)+". "+x.title+"\n";
+text+="Why it matters: "+x.why+"\n";
+text+="Recommended action: "+x.fix+"\n";
+text+="Service: "+x.service+"\n\n";
+
+});
+
+}else{
+
+text+="No medium-priority opportunities detected.\n\n";
+
+}
+
+text+="CURRENT STRENGTHS\n\n";
+
+if(data.strengths?.length){
+
+data.strengths.forEach(
+x=>{
+text+="✓ "+x+"\n";
+});
+
+}else{
+
+text+="No major strengths detected.\n";
+
+}
+
+text+="\nREVENUE OPPORTUNITY\n\n";
+
+if(data.revenue){
+
+const r=data.revenue;
+
+text+="MONTHLY VISITORS: "+
+r.visitors+"\n";
+
+text+="CURRENT CONVERSION: "+
+r.conversion+"%\n";
+
+text+="AVERAGE CUSTOMER VALUE: $"+
+Number(r.value).toFixed(2)+"\n";
+
+text+="ESTIMATED CUSTOMERS: "+
+Number(r.customers).toFixed(1)+"\n";
+
+text+="ESTIMATED MONTHLY REVENUE: $"+
+Number(r.currentRevenue).toFixed(2)+"\n";
+
+text+="50% CONVERSION IMPROVEMENT: $"+
+Number(r.improvedRevenue).toFixed(2)+"\n";
+
+text+="POTENTIAL ADDITIONAL REVENUE: $"+
+Number(r.additionalRevenue).toFixed(2)+"\n";
+
+}else{
+
+text+="No revenue assumptions provided.\n";
+
+}
+
+text+="\nBUSINESS SERVICES YOU CAN OFFER\n\n";
+
+(data.services||[]).forEach(
+x=>{
+text+="• "+x+"\n";
+});
+
+text+="\nIMPORTANT\n\n";
+
+text+="This report is based on publicly accessible website information. It cannot see private Google Analytics, Search Console, CRM, advertising data or actual revenue. Some JavaScript-rendered content may not be detected.";
+
+return text;
+
+}
 
 document.getElementById(
-  "fixButton"
+"downloadButton"
 ).addEventListener(
-  "click",
-  function() {
+"click",
+function(){
 
-    window.location.href =
-      window.location.href =
-  "mailto:jpdigitalai@gmail.com?subject=Website%20Growth%20Fix";
+if(!latestReport)return;
 
-  }
+const r=latestReport;
+
+const reportText=
+formatReport(r);
+
+const win=
+window.open(
+"",
+"_blank"
 );
 
-</script>
+if(!win){
+
+alert(
+"Please allow pop-ups to download the PDF."
+);
+
+return;
+
+}
+
+win.document.write(`
+<html>
+<head>
+<title>JP Business Growth Report</title>
+
+<style>
+
+body{
+font-family:Arial,sans-serif;
+padding:40px;
+color:#172033;
+line-height:1.6;
+}
+
+h1{
+font-size:26px;
+}
+
+pre{
+white-space:pre-wrap;
+font-family:Arial,sans-serif;
+font-size:13px;
+}
+
+@media print{
+body{
+padding:20px;
+}
+}
+
+</style></head><body><h1>JP Business Growth Report</h1><pre>${escapeHtml(reportText)}</pre><script>
+window.onload=function(){
+window.print();
+};
+<\/script>
 
 </body>
 </html>
+`);
+
+win.document.close();
+
+});
+
+function escapeHtml(text){
+
+return text
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
+}
+
+document.getElementById(
+"fixButton"
+).addEventListener(
+"click",
+function(){
+
+window.location.href=
+"mailto:jpdigitalai@gmail.com?subject=Website%20Growth%20Fix%20Request&body=Hello%20JP%20Digital%20AI,%0A%0AI%20would%20like%20help%20fixing%20the%20website%20issues%20identified%20in%20my%20JP%20Business%20Growth%20Report.";
+
+});
+
+</script></body>
+                                                              </html>
