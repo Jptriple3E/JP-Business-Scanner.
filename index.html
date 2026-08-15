@@ -1,369 +1,465 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>JP Business Scanner</title>
+<title>JP Business Scanner</title>
 
-  <meta
-    name="description"
-    content="Scan business websites for SEO, lead generation, trust and growth opportunities."
-  >
+<style>
+* {
+  box-sizing: border-box;
+}
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f7fb;
+  color: #172033;
+}
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f5f7fb;
-      color: #172033;
-    }
+.container {
+  width: 92%;
+  max-width: 1000px;
+  margin: 35px auto;
+}
 
-    .container {
-      width: 92%;
-      max-width: 850px;
-      margin: 40px auto;
-    }
+.hero {
+  text-align: center;
+  margin-bottom: 30px;
+}
 
-    .hero {
-      text-align: center;
-      margin-bottom: 30px;
-    }
+.hero h1 {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
 
-    .hero h1 {
-      font-size: 34px;
-      margin-bottom: 10px;
-    }
+.hero p {
+  color: #667085;
+  font-size: 17px;
+  line-height: 1.6;
+}
 
-    .hero p {
-      color: #667085;
-      line-height: 1.6;
-    }
+.card {
+  background: white;
+  padding: 25px;
+  border-radius: 18px;
+  box-shadow: 0 8px 30px rgba(0,0,0,.07);
+  margin-bottom: 22px;
+}
 
-    .card {
-      background: white;
-      padding: 24px;
-      border-radius: 16px;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
-      margin-bottom: 25px;
-    }
+label {
+  display: block;
+  font-weight: bold;
+  margin-top: 16px;
+  margin-bottom: 7px;
+}
 
-    label {
-      display: block;
-      font-weight: bold;
-      margin: 18px 0 7px;
-    }
+input {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #d0d5dd;
+  border-radius: 10px;
+  font-size: 16px;
+}
 
-    input {
-      width: 100%;
-      padding: 14px;
-      border: 1px solid #d0d5dd;
-      border-radius: 10px;
-      font-size: 16px;
-    }
+button {
+  width: 100%;
+  padding: 15px;
+  margin-top: 22px;
+  border: none;
+  border-radius: 10px;
+  background: #111827;
+  color: white;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+}
 
-    .hint {
-      font-size: 13px;
-      color: #667085;
-      margin-top: 5px;
-    }
+button:disabled {
+  opacity: .6;
+}
 
-    button {
-      width: 100%;
-      padding: 15px;
-      margin-top: 25px;
-      border: none;
-      border-radius: 10px;
-      background: #111827;
-      color: white;
-      font-size: 17px;
-      font-weight: bold;
-      cursor: pointer;
-    }
+#status {
+  text-align: center;
+  font-weight: bold;
+  margin: 20px 0;
+}
 
-    button:disabled {
-      opacity: 0.6;
-    }
+#reportArea {
+  display: none;
+}
 
-    #status {
-      text-align: center;
-      margin: 20px 0;
-      font-weight: bold;
-    }
+.score {
+  text-align: center;
+  padding: 25px;
+}
 
-    #report {
-      white-space: pre-wrap;
-      line-height: 1.7;
-      font-size: 15px;
-    }
+.scoreNumber {
+  font-size: 64px;
+  font-weight: bold;
+}
 
-    .success {
-      color: #067647;
-    }
+.scoreLabel {
+  font-size: 18px;
+  color: #667085;
+}
 
-    .error {
-      color: #b42318;
-    }
+.sectionTitle {
+  font-size: 21px;
+  margin-bottom: 15px;
+}
 
-    @media (max-width: 600px) {
-      .container {
-        margin: 25px auto;
-      }
+.reportBox {
+  white-space: pre-wrap;
+  line-height: 1.7;
+  font-size: 15px;
+}
 
-      .hero h1 {
-        font-size: 28px;
-      }
+.cta {
+  text-align: center;
+  background: #111827;
+  color: white;
+}
 
-      .card {
-        padding: 18px;
-      }
-    }
-  </style>
+.cta h2 {
+  margin-top: 0;
+}
+
+.cta p {
+  color: #d0d5dd;
+  line-height: 1.6;
+}
+
+.cta button {
+  background: white;
+  color: #111827;
+}
+
+.error {
+  color: #b42318;
+}
+
+.success {
+  color: #067647;
+}
+
+@media (max-width: 600px) {
+
+  .container {
+    margin: 20px auto;
+  }
+
+  .hero h1 {
+    font-size: 28px;
+  }
+
+  .card {
+    padding: 18px;
+  }
+
+  .scoreNumber {
+    font-size: 52px;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <div class="container">
+<div class="container">
 
-    <div class="hero">
-      <h1>JP Business Scanner</h1>
+  <div class="hero">
 
-      <p>
-        Find website gaps that may be limiting
-        leads, trust and business growth.
-      </p>
+    <h1>JP Business Scanner</h1>
+
+    <p>
+      Discover website problems that may be costing your business
+      leads, customers and growth.
+    </p>
+
+  </div>
+
+  <div class="card">
+
+    <label for="website">
+      Business Website
+    </label>
+
+    <input
+      id="website"
+      type="url"
+      placeholder="https://example.com"
+    >
+
+    <label for="visitors">
+      Monthly Visitors
+    </label>
+
+    <input
+      id="visitors"
+      type="number"
+      placeholder="Optional"
+    >
+
+    <label for="conversion">
+      Current Conversion Rate (%)
+    </label>
+
+    <input
+      id="conversion"
+      type="number"
+      step="0.01"
+      placeholder="Optional"
+    >
+
+    <label for="value">
+      Average Customer Value (USD)
+    </label>
+
+    <input
+      id="value"
+      type="number"
+      placeholder="Optional"
+    >
+
+    <button id="scanButton">
+      SCAN WEBSITE
+    </button>
+
+  </div>
+
+  <div id="status"></div>
+
+  <div id="reportArea">
+
+    <div class="card score">
+
+      <div class="scoreNumber" id="score">
+        --
+      </div>
+
+      <div class="scoreLabel">
+        Website Growth Score
+      </div>
+
     </div>
 
     <div class="card">
 
-      <label for="website">
-        Business Website
-      </label>
+      <h2 class="sectionTitle">
+        Website Growth Report
+      </h2>
 
-      <input
-        id="website"
-        type="url"
-        placeholder="https://example.com"
-      >
+      <div id="report" class="reportBox"></div>
 
-      <label for="visitors">
-        Monthly Visitors
-      </label>
+    </div>
 
-      <input
-        id="visitors"
-        type="number"
-        placeholder="Optional"
-      >
+    <div class="card cta">
 
-      <div class="hint">
-        Optional — use actual analytics data when available.
-      </div>
+      <h2>
+        Want These Website Problems Fixed?
+      </h2>
 
-      <label for="conversion">
-        Current Conversion Rate (%)
-      </label>
+      <p>
+        We can help improve your website's SEO,
+        lead generation, conversion opportunities
+        and online presence.
+      </p>
 
-      <input
-        id="conversion"
-        type="number"
-        step="0.01"
-        placeholder="Optional"
-      >
-
-      <div class="hint">
-        Optional — used for revenue estimates.
-      </div>
-
-      <label for="value">
-        Average Customer Value (USD)
-      </label>
-
-      <input
-        id="value"
-        type="number"
-        placeholder="Optional"
-      >
-
-      <div class="hint">
-        Optional — estimated value of one customer.
-      </div>
-
-      <button id="scanButton">
-        SCAN WEBSITE
+      <button id="fixButton">
+        GET THESE ISSUES FIXED
       </button>
 
     </div>
 
-    <div id="status"></div>
-
-    <div
-      class="card"
-      id="reportCard"
-      style="display:none;"
-    >
-      <div id="report"></div>
-    </div>
-
   </div>
 
-  <script>
+</div>
 
-    const API_URL =
-      "https://jp-business-scanner-v7.emmanueleboh219.workers.dev/";
+<script>
 
-    const scanButton =
-      document.getElementById("scanButton");
+const API_URL =
+  "https://jp-business-scanner-v7.emmanueleboh219.workers.dev/";
 
-    const status =
-      document.getElementById("status");
+const scanButton =
+  document.getElementById("scanButton");
 
-    const reportCard =
-      document.getElementById("reportCard");
+const status =
+  document.getElementById("status");
 
-    const report =
-      document.getElementById("report");
+const reportArea =
+  document.getElementById("reportArea");
 
-    scanButton.addEventListener(
-      "click",
-      async function () {
+const report =
+  document.getElementById("report");
 
-        const website =
-          document
-            .getElementById("website")
-            .value
-            .trim();
+const score =
+  document.getElementById("score");
 
-        const visitors =
-          document
-            .getElementById("visitors")
-            .value
-            .trim();
+scanButton.addEventListener(
+  "click",
+  async function() {
 
-        const conversion =
-          document
-            .getElementById("conversion")
-            .value
-            .trim();
+    const website =
+      document.getElementById("website")
+      .value
+      .trim();
 
-        const value =
-          document
-            .getElementById("value")
-            .value
-            .trim();
+    const visitors =
+      document.getElementById("visitors")
+      .value
+      .trim();
 
-        if (!website) {
+    const conversion =
+      document.getElementById("conversion")
+      .value
+      .trim();
 
-          status.textContent =
-            "Please enter a business website.";
+    const value =
+      document.getElementById("value")
+      .value
+      .trim();
 
-          status.className =
-            "error";
+    if (!website) {
 
-          return;
-        }
+      status.textContent =
+        "Please enter a business website.";
 
-        scanButton.disabled = true;
+      status.className =
+        "error";
 
-        scanButton.textContent =
-          "SCANNING...";
+      return;
+    }
 
-        status.textContent =
-          "Scanning website. Please wait...";
+    scanButton.disabled = true;
 
-        status.className = "";
+    scanButton.textContent =
+      "SCANNING...";
 
-        reportCard.style.display =
-          "none";
+    status.textContent =
+      "Analyzing website...";
 
-        try {
+    status.className = "";
 
-          const apiUrl =
-            new URL(API_URL);
+    reportArea.style.display =
+      "none";
 
-          apiUrl.searchParams.set(
-            "url",
-            website
-          );
+    try {
 
-          if (visitors) {
+      const api =
+        new URL(API_URL);
 
-            apiUrl.searchParams.set(
-              "visitors",
-              visitors
-            );
+      api.searchParams.set(
+        "url",
+        website
+      );
 
-          }
+      if (visitors) {
 
-          if (conversion) {
-
-            apiUrl.searchParams.set(
-              "conversion",
-              conversion
-            );
-
-          }
-
-          if (value) {
-
-            apiUrl.searchParams.set(
-              "value",
-              value
-            );
-
-          }
-
-          const response =
-            await fetch(
-              apiUrl.toString()
-            );
-
-          const result =
-            await response.text();
-
-          if (!response.ok) {
-            throw new Error(result);
-          }
-
-          report.textContent =
-            result;
-
-          reportCard.style.display =
-            "block";
-
-          status.textContent =
-            "SCAN COMPLETE";
-
-          status.className =
-            "success";
-
-        } catch (error) {
-
-          status.textContent =
-            "Scan failed: " +
-            error.message;
-
-          status.className =
-            "error";
-
-        } finally {
-
-          scanButton.disabled =
-            false;
-
-          scanButton.textContent =
-            "SCAN WEBSITE";
-
-        }
+        api.searchParams.set(
+          "visitors",
+          visitors
+        );
 
       }
-    );
 
-  </script>
+      if (conversion) {
+
+        api.searchParams.set(
+          "conversion",
+          conversion
+        );
+
+      }
+
+      if (value) {
+
+        api.searchParams.set(
+          "value",
+          value
+        );
+
+      }
+
+      const response =
+        await fetch(
+          api.toString()
+        );
+
+      const result =
+        await response.text();
+
+      if (!response.ok) {
+
+        throw new Error(result);
+
+      }
+
+      report.textContent =
+        result;
+
+      const scoreMatch =
+        result.match(
+          /OVERALL SCORE\s+(\d+)\/100/
+        );
+
+      if (scoreMatch) {
+
+        score.textContent =
+          scoreMatch[1] + "/100";
+
+      } else {
+
+        score.textContent =
+          "--";
+
+      }
+
+      reportArea.style.display =
+        "block";
+
+      status.textContent =
+        "SCAN COMPLETE";
+
+      status.className =
+        "success";
+
+    } catch (error) {
+
+      status.textContent =
+        "Scan failed: " +
+        error.message;
+
+      status.className =
+        "error";
+
+    } finally {
+
+      scanButton.disabled =
+        false;
+
+      scanButton.textContent =
+        "SCAN WEBSITE";
+
+    }
+
+  }
+);
+
+document.getElementById(
+  "fixButton"
+).addEventListener(
+  "click",
+  function() {
+
+    window.location.href =
+      "mailto:your@email.com?subject=Website%20Growth%20Fix";
+
+  }
+);
+
+</script>
 
 </body>
-  </html>
+</html>
