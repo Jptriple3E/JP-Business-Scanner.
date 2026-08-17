@@ -1,10 +1,10 @@
-JP Business Scanner — V11 + V12 Connected
+JP Business Scanner — V11 Scanner + V12 Fixer
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>JP Business Scanner</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -18,11 +18,11 @@ body{margin:0;font-family:Arial,sans-serif;background:#f4f7fb;color:#172033}
 .hero p{color:#667085;font-size:17px;line-height:1.6}
 .card{background:#fff;padding:25px;border-radius:18px;box-shadow:0 8px 30px rgba(0,0,0,.07);margin-bottom:22px}
 label{display:block;font-weight:bold;margin-top:16px;margin-bottom:7px}
-input{width:100%;padding:14px;border:1px solid #d0d5dd;border-radius:10px;font-size:16px}
-button{width:100%;padding:15px;margin-top:22px;border:0;border-radius:10px;background:#111827;color:#fff;font-size:17px;font-weight:bold;cursor:pointer}
+input,select{width:100%;padding:14px;border:1px solid #d0d5dd;border-radius:10px;font-size:16px}
+button{width:100%;padding:15px;margin-top:15px;border:0;border-radius:10px;background:#111827;color:#fff;font-size:17px;font-weight:bold;cursor:pointer}
 button:disabled{opacity:.6}
 #status{text-align:center;font-weight:bold;margin:20px 0}
-#reportArea{display:none}
+#reportArea,#fixerArea{display:none}
 .score{text-align:center;padding:25px}
 .scoreNumber{font-size:64px;font-weight:bold}
 .scoreLabel{font-size:18px;color:#667085}
@@ -39,20 +39,25 @@ button:disabled{opacity:.6}
 .breakdown{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
 .breakdownItem{text-align:center;background:#f8fafc;padding:15px;border-radius:10px}
 .breakdownItem strong{display:block;font-size:22px}
-.download{background:#067647;margin-top:15px}
-.error{color:#b42318}
+.download{background:#067647}
+.fixMain{background:#111827;color:#fff}
+.fixMain p{color:#d0d5dd;line-height:1.6}
+.fixButton{background:#7c3aed}
+.cancelButton{background:#667085}
+.fixList{margin:15px 0;padding-left:20px}
+.fixList li{margin-bottom:8px}
+.platformGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.platformBtn{background:#f8fafc;color:#172033;border:2px solid #e4e7ec;margin-top:0}
+.platformBtn.selected{border-color:#7c3aed;background:#faf5ff}
+.notice{padding:14px;border-radius:10px;background:#fffaeb;color:#92400e;margin-top:15px;line-height:1.6}
 .success{color:#067647}
-.v12box{border-left-color:#7c3aed;background:#faf5ff}
-.cta{text-align:center;background:#111827;color:#fff}
-.cta h2{margin-top:0}
-.cta p{color:#d0d5dd;line-height:1.6}
-.cta button{background:#fff;color:#111827}
+.error{color:#b42318}
 @media(max-width:600px){
 .container{margin:20px auto}
 .hero h1{font-size:28px}
 .card{padding:18px}
 .scoreNumber{font-size:52px}
-.snapshot,.breakdown{grid-template-columns:1fr}
+.snapshot,.breakdown,.platformGrid{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -83,7 +88,7 @@ leads, customers and growth.
 <label for="value">Average Customer Value (USD)</label>
 <input id="value" type="number" placeholder="Optional">
 
-<button id="scanButton" type="button">
+<button id="scanButton">
 SCAN A BUSINESS WEBSITE
 </button>
 
@@ -100,41 +105,107 @@ SCAN A BUSINESS WEBSITE
 </div>
 
 <div class="card">
-
 <h2 class="sectionTitle">Website Growth Report</h2>
-
 <div id="report" class="reportBox"></div>
 
-<button id="downloadButton" class="download" type="button">
+<button id="downloadButton" class="download">
 DOWNLOAD PROFESSIONAL PDF REPORT
 </button>
-
 </div>
 
-<div class="card cta">
+<!-- FIXER ENTRY -->
+
+<div class="card fixMain">
 
 <h2>Want These Website Problems Fixed?</h2>
 
 <p>
-We can help improve your website's SEO,
-lead generation, conversion opportunities
-and online presence.
+JP Business Fixer can turn detected website problems
+into implementation tasks. Select the platform used by
+the business and continue to the authorization step.
 </p>
 
-<button id="fixButton" type="button">
-GET THESE ISSUES FIXED
+<button id="openFixer" class="fixButton">
+OPEN WEBSITE FIXER
 </button>
 
 </div>
 
 </div>
+
+
+<!-- V12 FIXER -->
+
+<div id="fixerArea">
+
+<div class="card">
+
+<h2 class="sectionTitle">
+JP Business Fixer V12
+</h2>
+
+<p>
+Website detected:
+</p>
+
+<div class="reportItem">
+<strong id="fixWebsite">--</strong>
 </div>
+
+<h3>Select Website Platform</h3>
+
+<div class="platformGrid">
+
+<button class="platformBtn" data-platform="github">
+GitHub / Vercel
+</button>
+
+<button class="platformBtn" data-platform="wordpress">
+WordPress
+</button>
+
+<button class="platformBtn" data-platform="cloudflare">
+Cloudflare
+</button>
+
+<button class="platformBtn" data-platform="other">
+Other / CMS
+</button>
+
+</div>
+
+<div id="selectedPlatform"></div>
+
+<h3>Detected Problems</h3>
+
+<div id="fixProblems"></div>
+
+<div class="notice">
+<strong>Authorization required:</strong><br>
+The fixer can prepare website changes, but it must not
+modify a business website without authorization from the
+website owner or an authorized administrator.
+</div>
+
+<button id="authorizeFix" class="fixButton">
+CONTINUE TO AUTHORIZATION
+</button>
+
+<button id="closeFixer" class="cancelButton">
+BACK TO REPORT
+</button>
+
+</div>
+
+</div>
+
+</div>
+
 
 <script>
 
 /* =========================================
-   JP BUSINESS SCANNER
-   V11 + V12
+   API CONFIGURATION
    ========================================= */
 
 const V11_API =
@@ -144,28 +215,142 @@ const V12_API =
 "https://jp-business-fixer-v12.emmanueleboh219.workers.dev/";
 
 
-const scanButton=document.getElementById("scanButton");
-const status=document.getElementById("status");
-const reportArea=document.getElementById("reportArea");
-const report=document.getElementById("report");
-const score=document.getElementById("score");
-const rating=document.getElementById("rating");
+/* =========================================
+   ELEMENTS
+   ========================================= */
+
+const scanButton =
+document.getElementById("scanButton");
+
+const status =
+document.getElementById("status");
+
+const reportArea =
+document.getElementById("reportArea");
+
+const report =
+document.getElementById("report");
+
+const score =
+document.getElementById("score");
+
+const rating =
+document.getElementById("rating");
+
+const fixerArea =
+document.getElementById("fixerArea");
+
+const fixWebsite =
+document.getElementById("fixWebsite");
+
+const fixProblems =
+document.getElementById("fixProblems");
+
+const selectedPlatform =
+document.getElementById("selectedPlatform");
+
 
 let latestResult=null;
 let latestV12=null;
+let selectedPlatformName="";
 
+
+/* =========================================
+   SECURITY
+   ========================================= */
 
 function escapeHTML(value){
+
 return String(value ?? "")
 .replace(/&/g,"&amp;")
 .replace(/</g,"&lt;")
 .replace(/>/g,"&gt;")
 .replace(/"/g,"&quot;")
 .replace(/'/g,"&#039;");
+
 }
 
 
-function addProblems(html,title,items){
+/* =========================================
+   API
+   ========================================= */
+
+async function callAPI(
+base,
+website,
+visitors,
+conversion,
+value
+){
+
+const url=new URL(base);
+
+url.searchParams.set(
+"url",
+website
+);
+
+if(visitors)
+url.searchParams.set(
+"visitors",
+visitors
+);
+
+if(conversion)
+url.searchParams.set(
+"conversion",
+conversion
+);
+
+if(value)
+url.searchParams.set(
+"value",
+value
+);
+
+const response=
+await fetch(url.toString());
+
+const text=
+await response.text();
+
+let data;
+
+try{
+
+data=JSON.parse(text);
+
+}catch{
+
+throw new Error(
+"Invalid response from Worker."
+);
+
+}
+
+if(!response.ok || data.error){
+
+throw new Error(
+data.message ||
+"Worker request failed."
+);
+
+}
+
+return data;
+
+}
+
+
+/* =========================================
+   PROBLEM RENDERER
+   ========================================= */
+
+function addProblems(
+html,
+title,
+items
+){
 
 html+=`
 <div class="reportSection">
@@ -174,26 +359,34 @@ html+=`
 
 if(items && items.length){
 
-items.forEach((item,index)=>{
+items.forEach(
+(item,index)=>{
 
 html+=`
 <div class="reportItem">
-<strong>${index+1}. ${escapeHTML(item.title || "Website issue")}</strong>
 
-${item.why ? `
-<div><b>Why it matters:</b>
-${escapeHTML(item.why)}
-</div>`:""}
+<strong>
+${index+1}.
+${escapeHTML(
+item.title ||
+"Website issue"
+)}
+</strong>
 
-${item.fix ? `
-<div><b>Recommended fix:</b>
-${escapeHTML(item.fix)}
-</div>`:""}
+<div>
+<b>Why it matters:</b>
+${escapeHTML(item.why || "")}
+</div>
 
-${item.service ? `
-<div><b>Service:</b>
-${escapeHTML(item.service)}
-</div>`:""}
+<div>
+<b>Recommended fix:</b>
+${escapeHTML(item.fix || "")}
+</div>
+
+<div>
+<b>Service:</b>
+${escapeHTML(item.service || "")}
+</div>
 
 </div>
 `;
@@ -202,30 +395,43 @@ ${escapeHTML(item.service)}
 
 }else{
 
-html+="<p>None detected.</p>";
+html+=
+"<p>None detected.</p>";
 
 }
 
-html+="</div>";
+html+=
+"</div>";
 
 return html;
+
 }
 
 
-function displayReport(data,v12){
+/* =========================================
+   DISPLAY REPORT
+   ========================================= */
+
+function displayReport(data){
 
 latestResult=data;
-latestV12=v12;
 
-score.textContent=(data.score ?? "--")+"/100";
-rating.textContent=data.rating || "";
+score.textContent=
+(data.score ?? "--")+
+"/100";
+
+rating.textContent=
+data.rating || "";
 
 let html="";
+
 
 html+=`
 <div class="reportSection">
 <h3>Website</h3>
-<p>${escapeHTML(data.website)}</p>
+<p>
+${escapeHTML(data.website)}
+</p>
 </div>
 `;
 
@@ -236,26 +442,34 @@ if(data.breakdown){
 
 html+=`
 <div class="reportSection">
+
 <h3>Score Breakdown</h3>
 
 <div class="breakdown">
 
 <div class="breakdownItem">
-<strong>${data.breakdown.seo ?? 0}</strong>
+<strong>
+${data.breakdown.seo ?? 0}
+</strong>
 SEO & Technical
 </div>
 
 <div class="breakdownItem">
-<strong>${data.breakdown.lead ?? 0}</strong>
+<strong>
+${data.breakdown.lead ?? 0}
+</strong>
 Lead Generation
 </div>
 
 <div class="breakdownItem">
-<strong>${data.breakdown.trust ?? 0}</strong>
+<strong>
+${data.breakdown.trust ?? 0}
+</strong>
 Trust & Growth
 </div>
 
 </div>
+
 </div>
 `;
 
@@ -264,7 +478,8 @@ Trust & Growth
 
 /* SNAPSHOT */
 
-const s=data.snapshot || {};
+const s=
+data.snapshot || {};
 
 html+=`
 <div class="reportSection">
@@ -275,12 +490,16 @@ html+=`
 
 <div class="snapshotItem">
 <strong>Page Title</strong>
-${escapeHTML(s.title || "Missing")}
+${escapeHTML(
+s.title || "Missing"
+)}
 </div>
 
 <div class="snapshotItem">
 <strong>Meta Description</strong>
-${escapeHTML(s.description || "Missing")}
+${escapeHTML(
+s.description || "Missing"
+)}
 </div>
 
 <div class="snapshotItem">
@@ -295,12 +514,16 @@ ${s.h2 ?? 0}
 
 <div class="snapshotItem">
 <strong>Mobile Viewport</strong>
-${s.mobile ? "Detected":"Not detected"}
+${s.mobile ?
+"Detected":
+"Not detected"}
 </div>
 
 <div class="snapshotItem">
 <strong>HTTPS</strong>
-${s.https ? "Yes":"No"}
+${s.https ?
+"Yes":
+"No"}
 </div>
 
 <div class="snapshotItem">
@@ -315,57 +538,72 @@ ${s.missingAlt ?? 0}
 
 <div class="snapshotItem">
 <strong>Phone</strong>
-${s.phone ? "Detected":"Not detected"}
+${s.phone ?
+"Detected":
+"Not detected"}
 </div>
 
 <div class="snapshotItem">
 <strong>Email</strong>
-${s.email ? "Detected":"Not detected"}
+${s.email ?
+"Detected":
+"Not detected"}
 </div>
 
 <div class="snapshotItem">
 <strong>WhatsApp</strong>
-${s.whatsapp ? "Detected":"Not detected"}
+${s.whatsapp ?
+"Detected":
+"Not detected"}
 </div>
 
 <div class="snapshotItem">
 <strong>Contact Form</strong>
-${s.form ? "Detected":"Not detected"}
+${s.form ?
+"Detected":
+"Not detected"}
 </div>
 
 <div class="snapshotItem">
 <strong>Booking</strong>
-${s.booking ? "Detected":"Not detected"}
+${s.booking ?
+"Detected":
+"Not detected"}
 </div>
 
 <div class="snapshotItem">
 <strong>CTA</strong>
-${s.cta ? "Detected":"Not detected"}
+${s.cta ?
+"Detected":
+"Not detected"}
 </div>
 
 <div class="snapshotItem">
 <strong>Reviews</strong>
-${s.reviews ? "Detected":"Not detected"}
-</div>
-
-<div class="snapshotItem">
-<strong>Address</strong>
-${s.address ? "Detected":"Not detected"}
+${s.reviews ?
+"Detected":
+"Not detected"}
 </div>
 
 <div class="snapshotItem">
 <strong>Google Maps</strong>
-${s.maps ? "Detected":"Not detected"}
+${s.maps ?
+"Detected":
+"Not detected"}
 </div>
 
 <div class="snapshotItem">
 <strong>Structured Data</strong>
-${s.schema ? "Detected":"Not detected"}
+${s.schema ?
+"Detected":
+"Not detected"}
 </div>
 
 <div class="snapshotItem">
 <strong>Analytics</strong>
-${s.analytics ? "Detected":"Not detected"}
+${s.analytics ?
+"Detected":
+"Not detected"}
 </div>
 
 </div>
@@ -401,9 +639,13 @@ html+=`
 <h3>Current Strengths</h3>
 `;
 
-if(data.strengths && data.strengths.length){
+if(
+data.strengths &&
+data.strengths.length
+){
 
-data.strengths.forEach(item=>{
+data.strengths.forEach(
+item=>{
 
 html+=`
 <div class="reportItem">
@@ -415,7 +657,8 @@ html+=`
 
 }else{
 
-html+="<p>No major strengths detected.</p>";
+html+=
+"<p>No major strengths detected.</p>";
 
 }
 
@@ -426,7 +669,8 @@ html+="</div>";
 
 if(data.revenue){
 
-const r=data.revenue;
+const r=
+data.revenue;
 
 html+=`
 <div class="reportSection">
@@ -442,12 +686,16 @@ ${r.visitors}
 
 <p>
 <b>Current Conversion:</b>
-${r.currentConversion ?? r.conversion ?? 0}%
+${r.currentConversion ??
+r.conversion ??
+0}%
 </p>
 
 <p>
 <b>Average Customer Value:</b>
-$${Number(r.value || 0).toFixed(2)}
+$${Number(
+r.value || 0
+).toFixed(2)}
 </p>
 
 <p>
@@ -458,7 +706,7 @@ r.currentRevenue || 0
 </p>
 
 <p>
-<b>Estimated Additional Revenue:</b>
+<b>Potential Additional Revenue:</b>
 $${Number(
 r.additionalRevenue ??
 r.estimatedAdditionalHigh ??
@@ -474,133 +722,46 @@ r.estimatedAdditionalHigh ??
 }
 
 
-/* =========================================
-   V12 ADVANCED MODULES
-   ========================================= */
-
-if(v12){
-
 html+=`
 <div class="reportSection">
 
-<h3>V12 Advanced Website Fix System</h3>
+<h3>Available Services</h3>
 
-<div class="reportItem v12box">
-
-<strong>
-V12 analysis connected
-</strong>
-
-<p>
-The advanced fixer Worker has been contacted
-for this website.
-</p>
-
-`;
-
-if(v12.status){
-
-html+=`
-<p>
-<b>Status:</b>
-${escapeHTML(v12.status)}
-</p>
-`;
-
-}
-
-if(v12.message){
-
-html+=`
-<p>
-<b>Message:</b>
-${escapeHTML(v12.message)}
-</p>
-`;
-
-}
-
-
-/* MODULE STATUS */
-
-if(v12.modules){
-
-html+=`
-<p><b>Available Modules</b></p>
-`;
-
-Object.entries(v12.modules).forEach(([name,module])=>{
-
-if(!module) return;
-
-const label=name
-.replace(/([A-Z])/g," $1")
-.replace(/^./,x=>x.toUpperCase());
-
-html+=`
-<div>
-${escapeHTML(label)}:
-${escapeHTML(
-module.status ||
-(module.enabled ? "Active":"Unavailable")
-)}
+<div class="reportItem">
+SEO optimization
 </div>
-`;
 
-});
-
-}
-
-
-/* FIX SYSTEM */
-
-if(v12.fixSystem){
-
-html+=`
-<p>
-<b>Fix System:</b>
-${escapeHTML(
-v12.fixSystem.message ||
-v12.fixSystem.mode ||
-"Available with authorization."
-)}
-</p>
-`;
-
-}
-
-html+=`
+<div class="reportItem">
+Technical SEO
 </div>
+
+<div class="reportItem">
+Website conversion optimization
 </div>
-`;
 
-}
+<div class="reportItem">
+Lead-generation setup
+</div>
 
+<div class="reportItem">
+WhatsApp integration
+</div>
 
-/* SERVICES */
+<div class="reportItem">
+Local SEO
+</div>
 
-html+=`
-<div class="reportSection">
+<div class="reportItem">
+Analytics and conversion tracking
+</div>
 
-<h3>Business Services You Can Offer</h3>
-
-<div class="reportItem">SEO optimization</div>
-<div class="reportItem">Technical SEO</div>
-<div class="reportItem">Website conversion optimization</div>
-<div class="reportItem">Lead-generation setup</div>
-<div class="reportItem">WhatsApp integration</div>
-<div class="reportItem">Review/testimonial implementation</div>
-<div class="reportItem">Local SEO</div>
-<div class="reportItem">Analytics and conversion tracking</div>
-<div class="reportItem">Website technical fixes</div>
-<div class="reportItem">Google Maps integration</div>
-<div class="reportItem">Structured data implementation</div>
+<div class="reportItem">
+Website technical fixes
+</div>
 
 </div>
 `;
 
-
-/* IMPORTANT */
 
 html+=`
 <div class="reportSection">
@@ -608,68 +769,17 @@ html+=`
 <h3>Important</h3>
 
 <p>
-This report is based on publicly accessible website
+This report uses publicly accessible website
 information. Private Google Analytics, Search Console,
 CRM, advertising and financial information is not accessed.
-Actual website changes require explicit owner authorization
-and the appropriate platform integration.
+Actual website changes require authorization and the
+appropriate platform integration.
 </p>
 
 </div>
 `;
 
 report.innerHTML=html;
-
-}
-
-
-/* =========================================
-   API HELPER
-   ========================================= */
-
-async function callScanner(apiBase,website,visitors,conversion,value){
-
-const api=new URL(apiBase);
-
-api.searchParams.set("url",website);
-
-if(visitors)
-api.searchParams.set("visitors",visitors);
-
-if(conversion)
-api.searchParams.set("conversion",conversion);
-
-if(value)
-api.searchParams.set("value",value);
-
-const response=await fetch(api.toString());
-
-const text=await response.text();
-
-let result;
-
-try{
-
-result=JSON.parse(text);
-
-}catch{
-
-throw new Error(
-"Invalid response from scanner."
-);
-
-}
-
-if(!response.ok || result.error){
-
-throw new Error(
-result.message ||
-"Scanner request failed."
-);
-
-}
-
-return result;
 
 }
 
@@ -683,20 +793,24 @@ scanButton.addEventListener(
 async function(){
 
 const website=
-document.getElementById("website")
-.value.trim();
+document.getElementById(
+"website"
+).value.trim();
 
 const visitors=
-document.getElementById("visitors")
-.value.trim();
+document.getElementById(
+"visitors"
+).value.trim();
 
 const conversion=
-document.getElementById("conversion")
-.value.trim();
+document.getElementById(
+"conversion"
+).value.trim();
 
 const value=
-document.getElementById("value")
-.value.trim();
+document.getElementById(
+"value"
+).value.trim();
 
 
 if(!website){
@@ -711,37 +825,47 @@ return;
 }
 
 
-let cleanWebsite=website;
+let cleanWebsite=
+website;
 
 if(
-!cleanWebsite.startsWith("http://") &&
-!cleanWebsite.startsWith("https://")
+!cleanWebsite.startsWith(
+"http://"
+)&&
+!cleanWebsite.startsWith(
+"https://"
+)
 ){
 
 cleanWebsite=
-"https://"+cleanWebsite;
+"https://"+
+cleanWebsite;
 
 }
 
 
 scanButton.disabled=true;
-scanButton.textContent="SCANNING...";
+
+scanButton.textContent=
+"SCANNING...";
+
 status.textContent=
 "Running V11 website audit...";
 
 status.className="";
-reportArea.style.display="none";
+
+reportArea.style.display=
+"none";
+
+fixerArea.style.display=
+"none";
 
 
-let v11=null;
-let v12=null;
-
-
-/* V11 */
+let v11;
 
 try{
 
-v11=await callScanner(
+v11=await callAPI(
 V11_API,
 cleanWebsite,
 visitors,
@@ -752,19 +876,31 @@ value
 }catch(error){
 
 status.textContent=
-"V11 scan failed. Trying V12...";
+"Scan failed: "+
+error.message;
+
+status.className=
+"error";
+
+scanButton.disabled=false;
+
+scanButton.textContent=
+"SCAN A BUSINESS WEBSITE";
+
+return;
 
 }
 
 
-/* V12 */
+/* V12 background check */
+
+status.textContent=
+"Running V12 fixer analysis...";
 
 try{
 
-status.textContent=
-"Running V12 advanced analysis...";
-
-v12=await callScanner(
+latestV12=
+await callAPI(
 V12_API,
 cleanWebsite,
 visitors,
@@ -774,55 +910,372 @@ value
 
 }catch(error){
 
-/*
- V12 failure does NOT destroy
- the V11 report.
- */
-
-v12={
-status:"V12 request failed",
+latestV12={
+status:"Unavailable",
 message:error.message
 };
 
 }
 
 
-/* FINAL */
+displayReport(v11);
 
-if(!v11){
-
-status.textContent=
-"Scan failed: V11 could not complete the audit.";
-
-status.className="error";
-
-scanButton.disabled=false;
-scanButton.textContent=
-"SCAN A BUSINESS WEBSITE";
-
-return;
-
-}
-
-
-displayReport(v11,v12);
-
-reportArea.style.display="block";
+reportArea.style.display=
+"block";
 
 status.textContent=
 "SCAN COMPLETE — V11 + V12";
 
-status.className="success";
+status.className=
+"success";
+
+scanButton.disabled=false;
+
+scanButton.textContent=
+"SCAN A BUSINESS WEBSITE";
 
 window.scrollTo({
 top:reportArea.offsetTop,
 behavior:"smooth"
 });
 
+}
+);
 
-scanButton.disabled=false;
-scanButton.textContent=
-"SCAN A BUSINESS WEBSITE";
+
+/* =========================================
+   OPEN FIXER
+   ========================================= */
+
+document.getElementById(
+"openFixer"
+).addEventListener(
+"click",
+function(){
+
+if(!latestResult){
+
+alert(
+"Please scan a website first."
+);
+
+return;
+
+}
+
+fixWebsite.textContent=
+latestResult.website;
+
+fixProblems.innerHTML="";
+
+
+const problems=[
+...(latestResult.highPriority || []),
+...(latestResult.mediumPriority || []),
+...(latestResult.lowPriority || [])
+];
+
+
+if(!problems.length){
+
+fixProblems.innerHTML=
+`
+<div class="reportItem">
+<strong>No detected problems</strong>
+The scanner did not identify any fixable
+public-facing problems.
+</div>
+`;
+
+}else{
+
+problems.forEach(
+(item,index)=>{
+
+fixProblems.innerHTML+=`
+<div class="reportItem">
+
+<strong>
+${index+1}.
+${escapeHTML(
+item.title ||
+"Website issue"
+)}
+</strong>
+
+<div>
+${escapeHTML(
+item.fix ||
+"Review and improve this issue."
+)}
+</div>
+
+</div>
+`;
+
+});
+
+}
+
+
+selectedPlatformName="";
+
+selectedPlatform.innerHTML=
+`
+<p>
+<b>Platform:</b>
+Please select a platform above.
+</p>
+`;
+
+document.querySelectorAll(
+".platformBtn"
+).forEach(
+b=>b.classList.remove(
+"selected"
+)
+);
+
+reportArea.style.display=
+"none";
+
+fixerArea.style.display=
+"block";
+
+window.scrollTo({
+top:fixerArea.offsetTop,
+behavior:"smooth"
+});
+
+}
+);
+
+
+/* =========================================
+   PLATFORM SELECTOR
+   ========================================= */
+
+document.querySelectorAll(
+".platformBtn"
+).forEach(
+button=>{
+
+button.addEventListener(
+"click",
+function(){
+
+document.querySelectorAll(
+".platformBtn"
+).forEach(
+b=>b.classList.remove(
+"selected"
+)
+);
+
+this.classList.add(
+"selected"
+);
+
+selectedPlatformName=
+this.dataset.platform;
+
+selectedPlatform.innerHTML=
+`
+<div class="reportItem">
+
+<strong>
+Selected Platform
+</strong>
+
+${escapeHTML(
+this.textContent.trim()
+)}
+
+</div>
+`;
+
+}
+);
+
+}
+);
+
+
+/* =========================================
+   AUTHORIZATION / V12
+   ========================================= */
+
+document.getElementById(
+"authorizeFix"
+).addEventListener(
+"click",
+async function(){
+
+if(!latestResult){
+
+alert(
+"Please scan the website first."
+);
+
+return;
+
+}
+
+if(!selectedPlatformName){
+
+alert(
+"Please select the website platform first."
+);
+
+return;
+
+}
+
+
+const problems=[
+...(latestResult.highPriority || []),
+...(latestResult.mediumPriority || []),
+...(latestResult.lowPriority || [])
+];
+
+
+const payload={
+action:"prepare_fix",
+website:latestResult.website,
+platform:selectedPlatformName,
+score:latestResult.score,
+problems:problems
+};
+
+
+status.textContent=
+"Connecting to V12 Fixer...";
+
+status.className="";
+
+
+try{
+
+const url=
+new URL(V12_API);
+
+url.searchParams.set(
+"url",
+latestResult.website
+);
+
+url.searchParams.set(
+"platform",
+selectedPlatformName
+);
+
+url.searchParams.set(
+"action",
+"prepare_fix"
+);
+
+
+/*
+ The current Worker may only accept GET.
+ We therefore send the detected website and
+ platform through the URL and let V12 return
+ its authorization/integration instructions.
+ */
+
+const response=
+await fetch(
+url.toString()
+);
+
+const text=
+await response.text();
+
+let result;
+
+try{
+
+result=JSON.parse(text);
+
+}catch{
+
+result={
+message:text
+};
+
+}
+
+
+if(!response.ok){
+
+throw new Error(
+result.message ||
+"V12 fixer request failed."
+);
+
+}
+
+
+let message=
+result.message ||
+result.fixSystem?.message ||
+"V12 has received the website fix request.";
+
+
+alert(
+"V12 FIXER\n\n"+
+message+
+"\n\nPlatform: "+
+selectedPlatformName+
+"\n\nThe next step is owner authorization before any website changes are made."
+);
+
+
+status.textContent=
+"V12 fixer request prepared.";
+
+status.className=
+"success";
+
+
+}catch(error){
+
+alert(
+"V12 fixer connection failed:\n\n"+
+error.message
+);
+
+status.textContent=
+"V12 fixer connection failed.";
+
+status.className=
+"error";
+
+}
+
+}
+);
+
+
+/* =========================================
+   BACK TO REPORT
+   ========================================= */
+
+document.getElementById(
+"closeFixer"
+).addEventListener(
+"click",
+function(){
+
+fixerArea.style.display=
+"none";
+
+reportArea.style.display=
+"block";
+
+window.scrollTo({
+top:reportArea.offsetTop,
+behavior:"smooth"
+});
 
 }
 );
@@ -832,8 +1285,9 @@ scanButton.textContent=
    PDF
    ========================================= */
 
-document.getElementById("downloadButton")
-.addEventListener(
+document.getElementById(
+"downloadButton"
+).addEventListener(
 "click",
 function(){
 
@@ -850,19 +1304,21 @@ return;
 if(!window.jspdf){
 
 alert(
-"PDF generator is still loading. Please try again."
+"PDF generator is still loading."
 );
 
 return;
 
 }
 
+const {jsPDF}=
+window.jspdf;
 
-const {jsPDF}=window.jspdf;
+const data=
+latestResult;
 
-const data=latestResult;
-
-const doc=new jsPDF();
+const doc=
+new jsPDF();
 
 const pageWidth=
 doc.internal.pageSize.getWidth();
@@ -873,75 +1329,22 @@ doc.internal.pageSize.getHeight();
 let y=20;
 
 
-function header(){
-
-doc.setFontSize(20);
-doc.setFont(undefined,"bold");
-
-doc.text(
-"JP DIGITAL AI",
-20,
-y
-);
-
-y+=9;
-
-doc.setFontSize(15);
-
-doc.text(
-"BUSINESS WEBSITE GROWTH REPORT",
-20,
-y
-);
-
-y+=10;
-
-doc.setFont(undefined,"normal");
-
-doc.setFontSize(10);
-
-doc.text(
-"V11 + V12 Professional Website Audit",
-20,
-y
-);
-
-y+=12;
-
-}
-
-
-function line(){
-
-doc.setDrawColor(
-210,
-210,
-210
-);
-
-doc.line(
-20,
-y,
-pageWidth-20,
-y
-);
-
-y+=8;
-
-}
-
-
 function section(title){
 
 if(y>pageHeight-35){
 
 doc.addPage();
+
 y=20;
 
 }
 
 doc.setFontSize(13);
-doc.setFont(undefined,"bold");
+
+doc.setFont(
+undefined,
+"bold"
+);
 
 doc.text(
 title,
@@ -951,7 +1354,11 @@ y
 
 y+=8;
 
-doc.setFont(undefined,"normal");
+doc.setFont(
+undefined,
+"normal"
+);
+
 doc.setFontSize(10);
 
 }
@@ -972,6 +1379,7 @@ const lineText of lines
 if(y>pageHeight-20){
 
 doc.addPage();
+
 y=20;
 
 }
@@ -991,20 +1399,54 @@ y+=3;
 }
 
 
-header();
+doc.setFontSize(20);
 
+doc.setFont(
+undefined,
+"bold"
+);
 
-section("WEBSITE");
+doc.text(
+"JP DIGITAL AI",
+20,
+y
+);
+
+y+=9;
+
+doc.setFontSize(15);
+
+doc.text(
+"BUSINESS WEBSITE GROWTH REPORT",
+20,
+y
+);
+
+y+=12;
+
+doc.setFont(
+undefined,
+"normal"
+);
+
+section(
+"WEBSITE"
+);
 
 textBlock(
 data.website
 );
 
-
-section("OVERALL SCORE");
+section(
+"OVERALL SCORE"
+);
 
 doc.setFontSize(24);
-doc.setFont(undefined,"bold");
+
+doc.setFont(
+undefined,
+"bold"
+);
 
 doc.text(
 `${data.score}/100`,
@@ -1015,7 +1457,11 @@ y
 y+=8;
 
 doc.setFontSize(11);
-doc.setFont(undefined,"normal");
+
+doc.setFont(
+undefined,
+"normal"
+);
 
 textBlock(
 data.rating || ""
@@ -1036,10 +1482,7 @@ Lead Generation:
 ${data.breakdown.lead}
 
 Trust & Growth:
-${data.breakdown.trust}
-
-Local:
-${data.breakdown.local ?? "N/A"}`
+${data.breakdown.trust}`
 );
 
 }
@@ -1052,61 +1495,47 @@ section(
 const s=
 data.snapshot || {};
 
-const snapshotLines=[
-
-`Page Title: ${s.title}`,
-
-`Meta Description:
-${s.description}`,
-
-`H1 Headings: ${s.h1}`,
-
-`H2 Headings: ${s.h2}`,
-
-`Mobile Viewport:
-${s.mobile ? "Detected":"Not detected"}`,
-
-`HTTPS:
-${s.https ? "Yes":"No"}`,
-
-`Images: ${s.images}`,
-
-`Missing ALT Text:
-${s.missingAlt}`,
-
-`Phone:
-${s.phone ? "Detected":"Not detected"}`,
-
-`Email:
-${s.email ? "Detected":"Not detected"}`,
-
-`WhatsApp:
-${s.whatsapp ? "Detected":"Not detected"}`,
-
-`Contact Form:
-${s.form ? "Detected":"Not detected"}`,
-
-`Booking:
-${s.booking ? "Detected":"Not detected"}`,
-
-`CTA:
-${s.cta ? "Detected":"Not detected"}`,
-
-`Reviews:
-${s.reviews ? "Detected":"Not detected"}`,
-
-`Google Maps:
-${s.maps ? "Detected":"Not detected"}`,
-
-`Structured Data:
-${s.schema ? "Detected":"Not detected"}`,
-
-`Analytics:
-${s.analytics ? "Detected":"Not detected"}`
-];
-
 textBlock(
-snapshotLines.join("\n")
+`Page Title: ${s.title}
+
+Meta Description: ${s.description}
+
+H1 Headings: ${s.h1}
+
+H2 Headings: ${s.h2}
+
+Mobile Viewport:
+${s.mobile ? "Detected":"Not detected"}
+
+HTTPS:
+${s.https ? "Yes":"No"}
+
+Images:
+${s.images}
+
+Missing ALT Text:
+${s.missingAlt}
+
+Phone:
+${s.phone ? "Detected":"Not detected"}
+
+Email:
+${s.email ? "Detected":"Not detected"}
+
+WhatsApp:
+${s.whatsapp ? "Detected":"Not detected"}
+
+CTA:
+${s.cta ? "Detected":"Not detected"}
+
+Reviews:
+${s.reviews ? "Detected":"Not detected"}
+
+Google Maps:
+${s.maps ? "Detected":"Not detected"}
+
+Structured Data:
+${s.schema ? "Detected":"Not detected"}`
 );
 
 
@@ -1114,12 +1543,8 @@ section(
 "HIGH-PRIORITY PROBLEMS"
 );
 
-if(
-data.highPriority &&
-data.highPriority.length
-){
-
-data.highPriority.forEach(
+(data.highPriority || [])
+.forEach(
 (item,i)=>{
 
 textBlock(
@@ -1137,26 +1562,14 @@ ${item.service}`
 
 }
 );
-
-}else{
-
-textBlock(
-"No high-priority problems detected."
-);
-
-}
 
 
 section(
 "MEDIUM-PRIORITY OPPORTUNITIES"
 );
 
-if(
-data.mediumPriority &&
-data.mediumPriority.length
-){
-
-data.mediumPriority.forEach(
+(data.mediumPriority || [])
+.forEach(
 (item,i)=>{
 
 textBlock(
@@ -1175,104 +1588,24 @@ ${item.service}`
 }
 );
 
-}else{
-
-textBlock(
-"No medium-priority opportunities detected."
-);
-
-}
-
 
 section(
 "LOW-PRIORITY OPPORTUNITIES"
 );
 
-if(
-data.lowPriority &&
-data.lowPriority.length
-){
-
-data.lowPriority.forEach(
+(data.lowPriority || [])
+.forEach(
 (item,i)=>{
 
 textBlock(
 `${i+1}. ${item.title}
 
-Why it matters:
-${item.why || ""}
-
 Recommended fix:
-${item.fix || ""}
-
-Service:
-${item.service || ""}`
+${item.fix}`
 );
 
 }
 );
-
-}else{
-
-textBlock(
-"No low-priority opportunities detected."
-);
-
-}
-
-
-section(
-"CURRENT STRENGTHS"
-);
-
-if(
-data.strengths &&
-data.strengths.length
-){
-
-data.strengths.forEach(
-item=>
-textBlock("✓ "+item)
-);
-
-}else{
-
-textBlock(
-"No major strengths detected."
-);
-
-}
-
-
-if(latestV12){
-
-section(
-"V12 ADVANCED MODULE"
-);
-
-textBlock(
-"V12 advanced fixer analysis was requested for this website."
-);
-
-if(latestV12.status){
-
-textBlock(
-"Status: "+
-latestV12.status
-);
-
-}
-
-if(latestV12.message){
-
-textBlock(
-"Message: "+
-latestV12.message
-);
-
-}
-
-}
 
 
 section(
@@ -1280,13 +1613,9 @@ section(
 );
 
 textBlock(
-"This report is based on publicly accessible website information. Private Google Analytics, Search Console, CRM, advertising and financial information is not accessed. Actual website modifications require explicit owner authorization and the appropriate platform integration."
+"This report is based on publicly accessible website information. Private Google Analytics, Search Console, CRM, advertising and financial information is not accessed. Actual website changes require explicit owner authorization and appropriate platform integration."
 );
 
-
-line();
-
-doc.setFontSize(9);
 
 textBlock(
 "Prepared by JP Digital AI"
@@ -1303,26 +1632,9 @@ new Date()
 
 doc.save(filename);
 
-}
-);
-
-
-/* =========================================
-   CONTACT
-   ========================================= */
-
-document.getElementById("fixButton")
-.addEventListener(
-"click",
-function(){
-
-window.location.href=
-"mailto:jpdigitalai@gmail.com?subject=Website%20Growth%20Fix";
-
-}
-);
+});
 
 </script>
 
 </body>
-  </html>
+</html>
