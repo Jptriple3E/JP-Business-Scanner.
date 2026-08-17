@@ -1,42 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>JP Business Scanner</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"><title>JP Business Scanner</title><script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script><style>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
-<style>
-*{box-sizing:border-box}
+*{
+box-sizing:border-box;
+}
 
 body{
 margin:0;
 font-family:Arial,sans-serif;
 background:#f4f7fb;
-color:#172033
+color:#172033;
 }
 
 .container{
 width:92%;
 max-width:1000px;
-margin:35px auto
+margin:35px auto;
 }
 
 .hero{
 text-align:center;
-margin-bottom:30px
+margin-bottom:30px;
 }
 
 .hero h1{
 font-size:36px;
-margin-bottom:10px
+margin-bottom:10px;
 }
 
 .hero p{
 color:#667085;
 font-size:17px;
-line-height:1.6
+line-height:1.6;
 }
 
 .card{
@@ -44,22 +41,23 @@ background:#fff;
 padding:25px;
 border-radius:18px;
 box-shadow:0 8px 30px rgba(0,0,0,.07);
-margin-bottom:22px
+margin-bottom:22px;
 }
 
 label{
 display:block;
 font-weight:bold;
 margin-top:16px;
-margin-bottom:7px
+margin-bottom:7px;
 }
 
-input,select{
+input,
+select{
 width:100%;
 padding:14px;
 border:1px solid #d0d5dd;
 border-radius:10px;
-font-size:16px
+font-size:16px;
 }
 
 button{
@@ -72,60 +70,66 @@ background:#111827;
 color:#fff;
 font-size:17px;
 font-weight:bold;
-cursor:pointer
+cursor:pointer;
+}
+
+button:hover{
+opacity:.92;
 }
 
 button:disabled{
-opacity:.6
+opacity:.6;
+cursor:not-allowed;
 }
 
 #status{
 text-align:center;
 font-weight:bold;
-margin:20px 0
+margin:20px 0;
 }
 
-#reportArea,#fixerArea{
-display:none
+#reportArea,
+#fixerArea{
+display:none;
 }
 
 .score{
 text-align:center;
-padding:25px
+padding:25px;
 }
 
 .scoreNumber{
 font-size:64px;
-font-weight:bold
+font-weight:bold;
 }
 
 .scoreLabel{
 font-size:18px;
-color:#667085
+color:#667085;
 }
 
 .rating{
 margin-top:8px;
 font-size:18px;
-font-weight:bold
+font-weight:bold;
 }
 
 .sectionTitle{
 font-size:21px;
-margin-bottom:15px
+margin-bottom:15px;
 }
 
 .reportBox{
 line-height:1.7;
-font-size:15px
+font-size:15px;
 }
 
 .reportSection{
-margin-bottom:25px
+margin-bottom:25px;
 }
 
 .reportSection h3{
-margin-bottom:10px
+margin-bottom:10px;
 }
 
 .reportItem{
@@ -133,87 +137,87 @@ padding:14px;
 border-radius:10px;
 background:#f8fafc;
 margin-bottom:10px;
-border-left:4px solid #111827
+border-left:4px solid #111827;
 }
 
 .reportItem strong{
 display:block;
-margin-bottom:6px
+margin-bottom:6px;
 }
 
 .snapshot{
 display:grid;
 grid-template-columns:repeat(2,1fr);
-gap:10px
+gap:10px;
 }
 
 .snapshotItem{
 background:#f8fafc;
 padding:12px;
-border-radius:10px
+border-radius:10px;
 }
 
 .snapshotItem strong{
 display:block;
-margin-bottom:5px
+margin-bottom:5px;
 }
 
 .breakdown{
 display:grid;
 grid-template-columns:repeat(3,1fr);
-gap:10px
+gap:10px;
 }
 
 .breakdownItem{
 text-align:center;
 background:#f8fafc;
 padding:15px;
-border-radius:10px
+border-radius:10px;
 }
 
 .breakdownItem strong{
 display:block;
-font-size:22px
+font-size:22px;
 }
 
 .download{
-background:#067647
+background:#067647;
 }
 
 .fixMain{
 background:#111827;
-color:#fff
+color:#fff;
 }
 
 .fixMain p{
 color:#d0d5dd;
-line-height:1.6
+line-height:1.6;
 }
 
 .fixButton{
-background:#7c3aed
+background:#7c3aed;
 }
 
 .cancelButton{
-background:#667085
+background:#667085;
 }
 
 .platformGrid{
 display:grid;
 grid-template-columns:repeat(2,1fr);
-gap:10px
+gap:10px;
 }
 
 .platformBtn{
 background:#f8fafc;
 color:#172033;
 border:2px solid #e4e7ec;
-margin-top:0
+margin-top:0;
 }
 
 .platformBtn.selected{
 border-color:#7c3aed;
-background:#faf5ff
+background:#faf5ff;
 }
 
 .notice{
@@ -222,301 +226,276 @@ border-radius:10px;
 background:#fffaeb;
 color:#92400e;
 margin-top:15px;
-line-height:1.6
+line-height:1.6;
 }
 
 .success{
-color:#067647
+color:#067647;
 }
 
 .error{
-color:#b42318
+color:#b42318;
 }
 
 .loading{
-padding:15px;
-background:#f8fafc;
+color:#667085;
+}
+
+.fixerStatus{
+padding:14px;
 border-radius:10px;
-text-align:center;
-margin-top:15px
+background:#f8fafc;
+margin-top:15px;
+line-height:1.6;
+}
+
+.actionRow{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+}
+
+.actionRow button{
+margin-top:10px;
+}
+
+.badge{
+display:inline-block;
+padding:6px 10px;
+border-radius:20px;
+background:#ecfdf3;
+color:#067647;
+font-size:13px;
+font-weight:bold;
+}
+
+.warningBadge{
+background:#fffaeb;
+color:#92400e;
 }
 
 @media(max-width:600px){
 
 .container{
-margin:20px auto
+margin:20px auto;
 }
 
 .hero h1{
-font-size:28px
+font-size:28px;
 }
 
 .card{
-padding:18px
+padding:18px;
 }
 
 .scoreNumber{
-font-size:52px
+font-size:52px;
 }
 
 .snapshot,
 .breakdown,
-.platformGrid{
-grid-template-columns:1fr
+.platformGrid,
+.actionRow{
+grid-template-columns:1fr;
 }
 
 }
-</style>
-</head>
 
-<body>
-
-<div class="container">
-
-<div class="hero">
-
-<h1>JP Business Scanner</h1>
-
-<p>
+</style></head><body><div class="container"><div class="hero"><h1>JP Business Scanner</h1><p>
 Discover website problems that may be costing your business
 leads, customers and growth.
-</p>
-
-</div>
-
-
-<div class="card">
-
-<label for="website">
+</p></div><!-- ============================= --><!-- SCANNER INPUT --><!-- ============================= --><div class="card"><label for="website">
 Business Website
-</label>
-
-<input
+</label><input
 id="website"
 type="url"
 placeholder="https://example.com"
->
+autocomplete="url"
+
+«»
 
 <label for="visitors">
 Monthly Visitors
-</label>
-
-<input
+</label><input
 id="visitors"
 type="number"
 placeholder="Optional"
->
+
+«»
 
 <label for="conversion">
 Current Conversion Rate (%)
-</label>
-
-<input
+</label><input
 id="conversion"
 type="number"
 step="0.01"
 placeholder="Optional"
->
+
+«»
 
 <label for="value">
 Average Customer Value (USD)
-</label>
-
-<input
+</label><input
 id="value"
 type="number"
 placeholder="Optional"
->
 
-<button id="scanButton">
+«»
+
+<button
+id="scanButton"
+type="button"
+
+«»
+
 SCAN A BUSINESS WEBSITE
 </button>
 
-</div>
-
-
-<div id="status"></div>
-
-
-<div id="reportArea">
-
-<div class="card score">
-
-<div
+</div><div id="status"></div><!-- ============================= --><!-- REPORT --><!-- ============================= --><div id="reportArea"><div class="card score"><div
 class="scoreNumber"
 id="score"
 >
 --
-</div>
-
-<div class="scoreLabel">
+</div><div class="scoreLabel">
 Website Growth Score
-</div>
-
-<div
+</div><div
 class="rating"
 id="rating"
-></div>
-
-</div>
-
-
-<div class="card">
-
-<h2 class="sectionTitle">
+>
+</div></div><div class="card"><h2 class="sectionTitle">
 Website Growth Report
-</h2>
-
-<div
+</h2><div
 id="report"
 class="reportBox"
-></div>
-
-<button
+>
+</div><button
 id="downloadButton"
 class="download"
->
+type="button"
+
+«»
+
 DOWNLOAD PROFESSIONAL PDF REPORT
 </button>
 
-</div>
-
-
-<div class="card fixMain">
-
-<h2>
+</div><!-- ============================= --><!-- FIXER ENTRY --><!-- ============================= --><div class="card fixMain"><h2>
 Want These Website Problems Fixed?
-</h2>
-
-<p>
-JP Business Fixer can turn detected website problems
-into implementation tasks. Select the platform used by
-the business and continue to the authorization step.
-</p>
-
-<button
+</h2><p>
+JP Business Fixer can turn the problems detected by the
+scanner into a structured website-fix request. Select
+the website platform and continue to the authorization
+step before making any changes.
+</p><button
 id="openFixer"
 class="fixButton"
->
+type="button"
+
+«»
+
 OPEN WEBSITE FIXER
 </button>
 
-</div>
-
-</div>
-
-
-<div id="fixerArea">
-
-<div class="card">
-
-<h2 class="sectionTitle">
+</div></div><!-- ============================= --><!-- V12 FIXER --><!-- ============================= --><div id="fixerArea"><div class="card"><h2 class="sectionTitle">
 JP Business Fixer V12
-</h2>
-
-<p>
-Website detected:
-</p>
-
-<div class="reportItem">
-
-<strong id="fixWebsite">
+</h2><p>
+Website selected for fixing:
+</p><div class="reportItem"><strong id="fixWebsite">
 --
-</strong>
-
-</div>
-
-
-<h3>
+</strong></div><h3>
+Fixer Connection
+</h3><div
+id="fixerConnection"
+class="fixerStatus"
+>
+V12 Fixer is ready.
+</div><h3>
 Select Website Platform
-</h3>
-
-
-<div class="platformGrid">
-
-<button
+</h3><div class="platformGrid"><button
 class="platformBtn"
 data-platform="github"
->
+type="button"
+
+«»
+
 GitHub / Vercel
 </button>
 
 <button
 class="platformBtn"
 data-platform="wordpress"
->
+type="button"
+
+«»
+
 WordPress
 </button>
 
 <button
 class="platformBtn"
 data-platform="cloudflare"
->
+type="button"
+
+«»
+
 Cloudflare
 </button>
 
 <button
 class="platformBtn"
 data-platform="other"
->
+type="button"
+
+«»
+
 Other / CMS
 </button>
 
-</div>
-
-
-<div id="selectedPlatform"></div>
-
-
-<h3>
+</div><div id="selectedPlatform"><div class="fixerStatus">
+Please select the platform used by the website.
+</div></div><h3>
 Detected Problems
-</h3>
+</h3><div id="fixProblems">
+</div><div class="notice"><strong>
+Authorization required
+</strong><br>The fixer can prepare website changes and instructions,
+but it must not modify a business website without
+authorization from the website owner or an authorized
+administrator.
 
-<div id="fixProblems"></div>
-
-
-<div class="notice">
-
-<strong>
-Authorization required:
-</strong>
-
-<br>
-
-The fixer can prepare website changes, but it must not
-modify a business website without authorization from the
-website owner or an authorized administrator.
-
-</div>
-
-
-<button
+</div><button
 id="authorizeFix"
 class="fixButton"
->
-CONTINUE TO AUTHORIZATION
+type="button"
+
+«»
+
+PREPARE FIX REQUEST
 </button>
 
-
-<button
+<div class="actionRow"><button
 id="closeFixer"
 class="cancelButton"
->
+type="button"
+
+«»
+
 BACK TO REPORT
 </button>
 
-</div>
+<button
+id="newScan"
+type="button"
 
-</div>
+«»
 
-</div>
+NEW SCAN
+</button>
 
-
-<script>
+</div></div></div></div><script>
 
 /* =====================================================
    API CONFIGURATION
-===================================================== */
+   ===================================================== */
 
 const V13_API =
 "https://jp-business-scanner-v13.emmanueleboh219.workers.dev/";
@@ -527,7 +506,7 @@ const V12_API =
 
 /* =====================================================
    ELEMENTS
-===================================================== */
+   ===================================================== */
 
 const scanButton =
 document.getElementById("scanButton");
@@ -559,15 +538,20 @@ document.getElementById("fixProblems");
 const selectedPlatform =
 document.getElementById("selectedPlatform");
 
+const fixerConnection =
+document.getElementById("fixerConnection");
+
 
 let latestResult = null;
+
 let latestV12 = null;
+
 let selectedPlatformName = "";
 
 
 /* =====================================================
    HTML SECURITY
-===================================================== */
+   ===================================================== */
 
 function escapeHTML(value){
 
@@ -583,7 +567,7 @@ return String(value ?? "")
 
 /* =====================================================
    NORMALIZE WEBSITE
-===================================================== */
+   ===================================================== */
 
 function normalizeWebsite(value){
 
@@ -610,15 +594,16 @@ return website;
 
 
 /* =====================================================
-   API CALLER
-===================================================== */
+   API CALL
+   ===================================================== */
 
-async function callAPI(
+async function callWorker(
 base,
 website,
 visitors,
 conversion,
-value
+value,
+extra={}
 ){
 
 const url =
@@ -630,66 +615,60 @@ website
 );
 
 if(visitors){
-
 url.searchParams.set(
 "visitors",
 visitors
 );
-
 }
 
 if(conversion){
-
 url.searchParams.set(
 "conversion",
 conversion
 );
-
 }
 
 if(value){
-
 url.searchParams.set(
 "value",
 value
 );
+}
+
+Object.keys(extra).forEach(
+key=>{
+
+if(
+extra[key] !== undefined &&
+extra[key] !== null &&
+extra[key] !== ""
+){
+
+url.searchParams.set(
+key,
+extra[key]
+);
 
 }
 
-
-/*
-Prevent cached responses.
-*/
-
-url.searchParams.set(
-"_t",
-Date.now().toString()
-);
-
+});
 
 const response =
 await fetch(
 url.toString(),
 {
 method:"GET",
-cache:"no-store",
 headers:{
-"Accept":"application/json,text/plain,*/*"
+"Accept":
+"application/json,text/plain,*/*"
 }
 }
 );
 
-
 const text =
 await response.text();
 
-
-/*
-V13 should normally return JSON.
-If it doesn't, show the actual Worker response.
-*/
-
-let data = null;
+let data;
 
 try{
 
@@ -699,23 +678,20 @@ JSON.parse(text);
 }catch{
 
 throw new Error(
-"Worker returned a non-JSON response: " +
-text.slice(0,300)
+"Invalid response from Worker. The Worker did not return JSON."
 );
 
 }
-
 
 if(!response.ok){
 
 throw new Error(
 data.message ||
 data.error ||
-("HTTP "+response.status)
+`Worker returned HTTP ${response.status}.`
 );
 
 }
-
 
 if(data.error){
 
@@ -726,7 +702,6 @@ data.error
 
 }
 
-
 return data;
 
 }
@@ -734,13 +709,14 @@ return data;
 
 /* =====================================================
    PROBLEM RENDERER
-===================================================== */
+   ===================================================== */
 
-function addProblems(
-html,
+function renderProblems(
 title,
 items
 ){
+
+let html = "";
 
 html += `
 <div class="reportSection">
@@ -750,8 +726,8 @@ ${escapeHTML(title)}
 </h3>
 `;
 
-
 if(
+items &&
 Array.isArray(items) &&
 items.length
 ){
@@ -773,24 +749,21 @@ item.title ||
 <div>
 <b>Why it matters:</b>
 ${escapeHTML(
-item.why ||
-""
+item.why || ""
 )}
 </div>
 
 <div>
 <b>Recommended fix:</b>
 ${escapeHTML(
-item.fix ||
-""
+item.fix || ""
 )}
 </div>
 
 <div>
 <b>Service:</b>
 ${escapeHTML(
-item.service ||
-""
+item.service || ""
 )}
 </div>
 
@@ -801,14 +774,17 @@ item.service ||
 
 }else{
 
-html +=
-"<p>None detected.</p>";
+html += `
+<p>
+None detected.
+</p>
+`;
 
 }
 
-
-html +=
-"</div>";
+html += `
+</div>
+`;
 
 return html;
 
@@ -817,21 +793,18 @@ return html;
 
 /* =====================================================
    DISPLAY REPORT
-===================================================== */
+   ===================================================== */
 
 function displayReport(data){
 
-latestResult = data;
-
+latestResult =
+data;
 
 score.textContent =
-(data.score ?? "--") +
-"/100";
-
+`${data.score ?? "--"}/100`;
 
 rating.textContent =
-data.rating ||
-"";
+data.rating || "";
 
 
 let html = "";
@@ -848,8 +821,7 @@ Website
 
 <p>
 ${escapeHTML(
-data.website ||
-"Unknown"
+data.website || ""
 )}
 </p>
 
@@ -857,7 +829,7 @@ data.website ||
 `;
 
 
-/* BREAKDOWN */
+/* SCORE BREAKDOWN */
 
 if(data.breakdown){
 
@@ -880,7 +852,6 @@ SEO & Technical
 
 </div>
 
-
 <div class="breakdownItem">
 
 <strong>
@@ -890,7 +861,6 @@ ${data.breakdown.lead ?? 0}
 Lead Generation
 
 </div>
-
 
 <div class="breakdownItem">
 
@@ -915,7 +885,6 @@ Trust & Growth
 const s =
 data.snapshot || {};
 
-
 html += `
 <div class="reportSection">
 
@@ -926,243 +895,128 @@ Website Snapshot
 <div class="snapshot">
 
 <div class="snapshotItem">
-
-<strong>
-Page Title
-</strong>
-
+<strong>Page Title</strong>
 ${escapeHTML(
-s.title ||
-"Missing"
+s.title || "Missing"
 )}
-
 </div>
 
-
 <div class="snapshotItem">
-
-<strong>
-Meta Description
-</strong>
-
+<strong>Meta Description</strong>
 ${escapeHTML(
-s.description ||
-"Missing"
+s.description || "Missing"
 )}
-
 </div>
 
-
 <div class="snapshotItem">
-
-<strong>
-H1 Headings
-</strong>
-
+<strong>H1 Headings</strong>
 ${s.h1 ?? 0}
-
 </div>
 
-
 <div class="snapshotItem">
-
-<strong>
-H2 Headings
-</strong>
-
+<strong>H2 Headings</strong>
 ${s.h2 ?? 0}
-
 </div>
 
-
 <div class="snapshotItem">
-
-<strong>
-Mobile Viewport
-</strong>
-
+<strong>Mobile Viewport</strong>
 ${s.mobile ?
-"Detected" :
+"Detected":
 "Not detected"}
-
 </div>
 
-
 <div class="snapshotItem">
-
-<strong>
-HTTPS
-</strong>
-
+<strong>HTTPS</strong>
 ${s.https ?
-"Yes" :
+"Yes":
 "No"}
-
 </div>
 
-
 <div class="snapshotItem">
-
-<strong>
-Images
-</strong>
-
+<strong>Images</strong>
 ${s.images ?? 0}
-
 </div>
 
-
 <div class="snapshotItem">
-
-<strong>
-Missing ALT Text
-</strong>
-
+<strong>Missing ALT Text</strong>
 ${s.missingAlt ?? 0}
-
 </div>
 
-
 <div class="snapshotItem">
-
-<strong>
-Phone
-</strong>
-
+<strong>Phone</strong>
 ${s.phone ?
-"Detected" :
+"Detected":
 "Not detected"}
-
 </div>
 
-
 <div class="snapshotItem">
-
-<strong>
-Email
-</strong>
-
+<strong>Email</strong>
 ${s.email ?
-"Detected" :
+"Detected":
 "Not detected"}
-
 </div>
 
-
 <div class="snapshotItem">
-
-<strong>
-WhatsApp
-</strong>
-
+<strong>WhatsApp</strong>
 ${s.whatsapp ?
-"Detected" :
+"Detected":
 "Not detected"}
-
 </div>
 
-
 <div class="snapshotItem">
-
-<strong>
-Contact Form
-</strong>
-
+<strong>Contact Form</strong>
 ${s.form ?
-"Detected" :
+"Detected":
 "Not detected"}
-
 </div>
 
-
 <div class="snapshotItem">
-
-<strong>
-Booking
-</strong>
-
+<strong>Booking</strong>
 ${s.booking ?
-"Detected" :
+"Detected":
 "Not detected"}
-
 </div>
 
-
 <div class="snapshotItem">
-
-<strong>
-CTA
-</strong>
-
+<strong>CTA</strong>
 ${s.cta ?
-"Detected" :
+"Detected":
 "Not detected"}
-
 </div>
 
-
 <div class="snapshotItem">
-
-<strong>
-Reviews
-</strong>
-
+<strong>Reviews</strong>
 ${s.reviews ?
-"Detected" :
+"Detected":
 "Not detected"}
-
 </div>
 
-
 <div class="snapshotItem">
-
-<strong>
-Address
-</strong>
-
+<strong>Address</strong>
 ${s.address ?
-"Detected" :
+"Detected":
 "Not detected"}
-
 </div>
 
-
 <div class="snapshotItem">
-
-<strong>
-Google Maps
-</strong>
-
+<strong>Google Maps</strong>
 ${s.maps ?
-"Detected" :
+"Detected":
 "Not detected"}
-
 </div>
 
-
 <div class="snapshotItem">
-
-<strong>
-Structured Data
-</strong>
-
+<strong>Structured Data</strong>
 ${s.schema ?
-"Detected" :
+"Detected":
 "Not detected"}
-
 </div>
 
-
 <div class="snapshotItem">
-
-<strong>
-Analytics
-</strong>
-
+<strong>Analytics</strong>
 ${s.analytics ?
-"Detected" :
+"Detected":
 "Not detected"}
-
 </div>
 
 </div>
@@ -1173,25 +1027,17 @@ ${s.analytics ?
 
 /* PROBLEMS */
 
-html =
-addProblems(
-html,
+html += renderProblems(
 "High-Priority Problems",
 data.highPriority || []
 );
 
-
-html =
-addProblems(
-html,
+html += renderProblems(
 "Medium-Priority Opportunities",
 data.mediumPriority || []
 );
 
-
-html =
-addProblems(
-html,
+html += renderProblems(
 "Low-Priority Opportunities",
 data.lowPriority || []
 );
@@ -1207,8 +1053,8 @@ Current Strengths
 </h3>
 `;
 
-
 if(
+data.strengths &&
 Array.isArray(data.strengths) &&
 data.strengths.length
 ){
@@ -1226,14 +1072,17 @@ html += `
 
 }else{
 
-html +=
-"<p>No major strengths detected.</p>";
+html += `
+<p>
+No major strengths detected.
+</p>
+`;
 
 }
 
-
-html +=
-"</div>";
+html += `
+</div>
+`;
 
 
 /* REVENUE */
@@ -1242,7 +1091,6 @@ if(data.revenue){
 
 const r =
 data.revenue;
-
 
 html += `
 <div class="reportSection">
@@ -1255,7 +1103,7 @@ Revenue Opportunity
 
 <p>
 <b>Monthly Visitors:</b>
-${escapeHTML(r.visitors)}
+${escapeHTML(r.visitors ?? 0)}
 </p>
 
 <p>
@@ -1272,6 +1120,13 @@ r.conversion ??
 $${Number(
 r.value || 0
 ).toFixed(2)}
+</p>
+
+<p>
+<b>Estimated Customers:</b>
+${Number(
+r.customers || 0
+).toFixed(1)}
 </p>
 
 <p>
@@ -1353,11 +1208,11 @@ Important
 </h3>
 
 <p>
-This report uses publicly accessible website
-information. Private Google Analytics, Search Console,
-CRM, advertising and financial information is not accessed.
-Actual website changes require authorization and the
-appropriate platform integration.
+This report uses publicly accessible website information.
+Private Google Analytics, Search Console, CRM, advertising
+and financial information is not accessed. Actual website
+changes require authorization and the appropriate platform
+integration.
 </p>
 
 </div>
@@ -1371,47 +1226,37 @@ html;
 
 
 /* =====================================================
-   SCAN
-===================================================== */
+   SCAN BUTTON
+   ===================================================== */
 
 scanButton.addEventListener(
 "click",
 async function(){
 
-const websiteInput =
+const rawWebsite =
 document.getElementById(
 "website"
-);
-
-const visitorsInput =
-document.getElementById(
-"visitors"
-);
-
-const conversionInput =
-document.getElementById(
-"conversion"
-);
-
-const valueInput =
-document.getElementById(
-"value"
-);
-
+).value;
 
 const website =
 normalizeWebsite(
-websiteInput.value
+rawWebsite
 );
 
 const visitors =
-visitorsInput.value.trim();
+document.getElementById(
+"visitors"
+).value.trim();
 
 const conversion =
-conversionInput.value.trim();
+document.getElementById(
+"conversion"
+).value.trim();
 
 const value =
-valueInput.value.trim();
+document.getElementById(
+"value"
+).value.trim();
 
 
 if(!website){
@@ -1427,40 +1272,11 @@ return;
 }
 
 
-/*
-Validate URL before sending.
-*/
-
-try{
-
-new URL(website);
-
-}catch{
-
-status.textContent =
-"Please enter a valid website URL.";
-
-status.className =
-"error";
-
-return;
-
-}
-
-
 scanButton.disabled =
 true;
 
 scanButton.textContent =
 "SCANNING...";
-
-
-status.textContent =
-"Connecting to V13 scanner...";
-
-status.className =
-"";
-
 
 reportArea.style.display =
 "none";
@@ -1468,15 +1284,19 @@ reportArea.style.display =
 fixerArea.style.display =
 "none";
 
+status.className =
+"loading";
+
+status.textContent =
+"V13 is analyzing the website...";
+
 
 try{
 
-/*
-V13 is now the main scanner.
-*/
+/* V13 SCANNER */
 
-const v13 =
-await callAPI(
+const result =
+await callWorker(
 V13_API,
 website,
 visitors,
@@ -1484,51 +1304,18 @@ conversion,
 value
 );
 
-
-displayReport(v13);
-
-
-/*
-V12 fixer analysis is optional.
-A V12 failure will NOT destroy
-a successful V13 scan.
-*/
-
-status.textContent =
-"Website audit complete. Preparing fixer...";
-
-
-try{
-
-latestV12 =
-await callAPI(
-V12_API,
-website,
-visitors,
-conversion,
-value
+displayReport(
+result
 );
-
-}catch(error){
-
-latestV12 = {
-status:"Unavailable",
-message:error.message
-};
-
-}
-
 
 reportArea.style.display =
 "block";
 
-
-status.textContent =
-"SCAN COMPLETE — V13 SCANNER + V12 FIXER";
-
 status.className =
 "success";
 
+status.textContent =
+"SCAN COMPLETE — V13 SCANNER + V12 FIXER READY";
 
 window.scrollTo({
 top:reportArea.offsetTop,
@@ -1536,24 +1323,26 @@ behavior:"smooth"
 });
 
 
+/*
+Optional V12 health check is deliberately NOT
+run automatically here.
+
+This keeps scanning fast and prevents a V12
+connection problem from breaking a successful
+V13 scan.
+
+V12 is contacted when the user opens/prepares
+the fixer.
+*/
+
 }catch(error){
-
-console.error(
-"Scanner error:",
-error
-);
-
-
-status.textContent =
-"Scan failed: " +
-error.message;
 
 status.className =
 "error";
 
-
-reportArea.style.display =
-"none";
+status.textContent =
+"Scan failed: " +
+error.message;
 
 }finally{
 
@@ -1571,7 +1360,7 @@ scanButton.textContent =
 
 /* =====================================================
    OPEN FIXER
-===================================================== */
+   ===================================================== */
 
 document.getElementById(
 "openFixer"
@@ -1591,17 +1380,59 @@ return;
 
 
 fixWebsite.textContent =
-latestResult.website;
+latestResult.website ||
+"--";
 
 
-fixProblems.innerHTML =
+/* RESET */
+
+selectedPlatformName =
 "";
 
+latestV12 =
+null;
+
+document.querySelectorAll(
+".platformBtn"
+).forEach(
+button=>{
+
+button.classList.remove(
+"selected"
+);
+
+}
+);
+
+
+selectedPlatform.innerHTML = `
+<div class="fixerStatus">
+Please select the platform used by this website.
+</div>
+`;
+
+
+fixerConnection.innerHTML = `
+<span class="badge">
+V12 FIXER READY
+</span>
+
+<br><br>
+
+Select a platform to prepare the fix request.
+`;
+
+
+/* PROBLEMS */
 
 const problems = [
+
 ...(latestResult.highPriority || []),
+
 ...(latestResult.mediumPriority || []),
+
 ...(latestResult.lowPriority || [])
+
 ];
 
 
@@ -1614,22 +1445,24 @@ fixProblems.innerHTML = `
 No detected problems
 </strong>
 
-The scanner did not identify any
-fixable public-facing problems.
+The scanner did not identify any public-facing
+problems that require fixing.
 
 </div>
 `;
 
 }else{
 
+let html = "";
+
 problems.forEach(
 (item,index)=>{
 
-fixProblems.innerHTML += `
+html += `
 <div class="reportItem">
 
 <strong>
-${index+1}.
+${index + 1}.
 ${escapeHTML(
 item.title ||
 "Website issue"
@@ -1637,9 +1470,18 @@ item.title ||
 </strong>
 
 <div>
+<b>Recommended fix:</b>
 ${escapeHTML(
 item.fix ||
 "Review and improve this issue."
+)}
+</div>
+
+<div>
+<b>Service:</b>
+${escapeHTML(
+item.service ||
+"Website optimization"
 )}
 </div>
 
@@ -1648,28 +1490,10 @@ item.fix ||
 
 });
 
+fixProblems.innerHTML =
+html;
+
 }
-
-
-selectedPlatformName =
-"";
-
-
-selectedPlatform.innerHTML = `
-<p>
-<b>Platform:</b>
-Please select a platform above.
-</p>
-`;
-
-
-document.querySelectorAll(
-".platformBtn"
-).forEach(
-b=>b.classList.remove(
-"selected"
-)
-);
 
 
 reportArea.style.display =
@@ -1677,7 +1501,6 @@ reportArea.style.display =
 
 fixerArea.style.display =
 "block";
-
 
 window.scrollTo({
 top:fixerArea.offsetTop,
@@ -1690,7 +1513,7 @@ behavior:"smooth"
 
 /* =====================================================
    PLATFORM SELECTOR
-===================================================== */
+   ===================================================== */
 
 document.querySelectorAll(
 ".platformBtn"
@@ -1704,16 +1527,18 @@ function(){
 document.querySelectorAll(
 ".platformBtn"
 ).forEach(
-b=>b.classList.remove(
+b=>{
+
+b.classList.remove(
 "selected"
-)
 );
 
+}
+);
 
 this.classList.add(
 "selected"
 );
-
 
 selectedPlatformName =
 this.dataset.platform;
@@ -1741,8 +1566,8 @@ this.textContent.trim()
 
 
 /* =====================================================
-   AUTHORIZATION / V12
-===================================================== */
+   PREPARE V12 FIX
+   ===================================================== */
 
 document.getElementById(
 "authorizeFix"
@@ -1753,7 +1578,7 @@ async function(){
 if(!latestResult){
 
 alert(
-"Please scan the website first."
+"Please scan a website first."
 );
 
 return;
@@ -1772,124 +1597,197 @@ return;
 }
 
 
-status.textContent =
-"Connecting to V12 Fixer...";
+const problems = [
+
+...(latestResult.highPriority || []),
+
+...(latestResult.mediumPriority || []),
+
+...(latestResult.lowPriority || [])
+
+];
+
+
+const button =
+this;
+
+button.disabled =
+true;
+
+button.textContent =
+"CONNECTING TO V12...";
+
 
 status.className =
-"";
+"loading";
+
+status.textContent =
+"Preparing V12 fixer request...";
+
+
+fixerConnection.innerHTML = `
+<div class="fixerStatus">
+Connecting to JP Business Fixer V12...
+</div>
+`;
 
 
 try{
 
-const url =
-new URL(V12_API);
+/*
+V12 currently uses GET parameters.
+We send the website, selected platform
+and action to the Worker.
+*/
 
-
-url.searchParams.set(
-"url",
-latestResult.website
-);
-
-
-url.searchParams.set(
-"platform",
-selectedPlatformName
-);
-
-
-url.searchParams.set(
-"action",
-"prepare_fix"
-);
-
-
-url.searchParams.set(
-"_t",
-Date.now().toString()
-);
-
-
-const response =
-await fetch(
-url.toString(),
+const result =
+await callWorker(
+V12_API,
+latestResult.website,
+"",
+"",
+"",
 {
-method:"GET",
-cache:"no-store",
-headers:{
-"Accept":
-"application/json,text/plain,*/*"
-}
+platform:
+selectedPlatformName,
+
+action:
+"prepare_fix",
+
+score:
+latestResult.score,
+
+problems:
+JSON.stringify(
+problems
+)
 }
 );
 
 
-const text =
-await response.text();
+latestV12 =
+result;
 
 
-let result;
-
-
-try{
-
-result =
-JSON.parse(text);
-
-}catch{
-
-result = {
-message:text
-};
-
-}
-
-
-if(!response.ok){
-
-throw new Error(
-result.message ||
-result.error ||
-("HTTP "+response.status)
-);
-
-}
-
+/* SUCCESS */
 
 const message =
 result.message ||
 result.fixSystem?.message ||
-"V12 has received the website fix request.";
+result.status ||
+"V12 has received the fix request.";
 
 
-alert(
-"JP BUSINESS FIXER V12\n\n" +
-message +
-"\n\nPlatform: " +
-selectedPlatformName +
-"\n\nOwner authorization is required before any website changes are made."
-);
+fixerConnection.innerHTML = `
+<div class="fixerStatus">
 
+<span class="badge">
+V12 REQUEST RECEIVED
+</span>
 
-status.textContent =
-"V12 fixer request prepared.";
+<br><br>
+
+${escapeHTML(message)}
+
+<br><br>
+
+<b>Website:</b>
+${escapeHTML(
+latestResult.website
+)}
+
+<br>
+
+<b>Platform:</b>
+${escapeHTML(
+selectedPlatformName
+)}
+
+<br>
+
+<b>Problems:</b>
+${problems.length}
+
+</div>
+`;
+
 
 status.className =
 "success";
 
+status.textContent =
+"V12 fixer request prepared successfully.";
+
+
+alert(
+"V12 FIXER REQUEST READY\n\n" +
+"Website: " +
+latestResult.website +
+"\n\nPlatform: " +
+selectedPlatformName +
+"\n\nDetected problems: " +
+problems.length +
+"\n\n" +
+message +
+"\n\nOwner authorization is still required before making website changes."
+);
+
 
 }catch(error){
 
-alert(
-"V12 fixer connection failed:\n\n" +
-error.message
-);
+/*
+Important:
+A V13 scan remains valid even if V12
+cannot be reached.
+*/
 
+latestV12 = {
+status:"error",
+message:error.message
+};
+
+
+fixerConnection.innerHTML = `
+<div class="fixerStatus error">
+
+<strong>
+V12 connection problem
+</strong>
+
+<br><br>
+
+${escapeHTML(
+error.message
+)}
+
+<br><br>
+
+Your V13 scan is still valid. This only means
+the V12 Worker did not return the expected response.
+
+</div>
+`;
+
+
+status.className =
+"error";
 
 status.textContent =
 "V12 fixer connection failed.";
 
-status.className =
-"error";
+alert(
+"V12 fixer connection failed.\n\n" +
+error.message +
+"\n\nYour V13 scan is still available."
+);
+
+}finally{
+
+button.disabled =
+false;
+
+button.textContent =
+"PREPARE FIX REQUEST";
 
 }
 
@@ -1899,7 +1797,7 @@ status.className =
 
 /* =====================================================
    BACK TO REPORT
-===================================================== */
+   ===================================================== */
 
 document.getElementById(
 "closeFixer"
@@ -1913,7 +1811,6 @@ fixerArea.style.display =
 reportArea.style.display =
 "block";
 
-
 window.scrollTo({
 top:reportArea.offsetTop,
 behavior:"smooth"
@@ -1924,8 +1821,65 @@ behavior:"smooth"
 
 
 /* =====================================================
+   NEW SCAN
+   ===================================================== */
+
+document.getElementById(
+"newScan"
+).addEventListener(
+"click",
+function(){
+
+latestResult =
+null;
+
+latestV12 =
+null;
+
+selectedPlatformName =
+"";
+
+fixerArea.style.display =
+"none";
+
+reportArea.style.display =
+"none";
+
+status.textContent =
+"";
+
+document.getElementById(
+"website"
+).value =
+"";
+
+document.getElementById(
+"visitors"
+).value =
+"";
+
+document.getElementById(
+"conversion"
+).value =
+"";
+
+document.getElementById(
+"value"
+).value =
+"";
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
+);
+
+
+/* =====================================================
    PDF REPORT
-===================================================== */
+   ===================================================== */
 
 document.getElementById(
 "downloadButton"
@@ -1955,13 +1909,14 @@ return;
 }
 
 
-const {jsPDF} =
+const {
+jsPDF
+} =
 window.jspdf;
 
 
 const data =
 latestResult;
-
 
 const doc =
 new jsPDF();
@@ -1970,10 +1925,8 @@ new jsPDF();
 const pageWidth =
 doc.internal.pageSize.getWidth();
 
-
 const pageHeight =
 doc.internal.pageSize.getHeight();
-
 
 let y = 20;
 
@@ -1982,7 +1935,9 @@ let y = 20;
 
 function section(title){
 
-if(y > pageHeight - 35){
+if(
+y > pageHeight - 35
+){
 
 doc.addPage();
 
@@ -1990,8 +1945,9 @@ y = 20;
 
 }
 
-
-doc.setFontSize(13);
+doc.setFontSize(
+13
+);
 
 doc.setFont(
 undefined,
@@ -2011,7 +1967,9 @@ undefined,
 "normal"
 );
 
-doc.setFontSize(10);
+doc.setFontSize(
+10
+);
 
 }
 
@@ -2026,19 +1984,19 @@ String(text),
 pageWidth - 40
 );
 
-
 for(
 const lineText of lines
 ){
 
-if(y > pageHeight - 20){
+if(
+y > pageHeight - 20
+){
 
 doc.addPage();
 
 y = 20;
 
 }
-
 
 doc.text(
 lineText,
@@ -2050,7 +2008,6 @@ y += 5;
 
 }
 
-
 y += 3;
 
 }
@@ -2058,7 +2015,9 @@ y += 3;
 
 /* HEADER */
 
-doc.setFontSize(20);
+doc.setFontSize(
+20
+);
 
 doc.setFont(
 undefined,
@@ -2073,8 +2032,9 @@ y
 
 y += 9;
 
-
-doc.setFontSize(15);
+doc.setFontSize(
+15
+);
 
 doc.text(
 "BUSINESS WEBSITE GROWTH REPORT",
@@ -2083,7 +2043,6 @@ y
 );
 
 y += 12;
-
 
 doc.setFont(
 undefined,
@@ -2098,8 +2057,7 @@ section(
 );
 
 textBlock(
-data.website ||
-"Unknown"
+data.website || ""
 );
 
 
@@ -2109,7 +2067,9 @@ section(
 "OVERALL SCORE"
 );
 
-doc.setFontSize(24);
+doc.setFontSize(
+24
+);
 
 doc.setFont(
 undefined,
@@ -2124,8 +2084,9 @@ y
 
 y += 8;
 
-
-doc.setFontSize(11);
+doc.setFontSize(
+11
+);
 
 doc.setFont(
 undefined,
@@ -2165,10 +2126,8 @@ section(
 "WEBSITE SNAPSHOT"
 );
 
-
 const s =
 data.snapshot || {};
-
 
 textBlock(
 `Page Title:
@@ -2216,6 +2175,9 @@ ${s.cta ? "Detected":"Not detected"}
 Reviews:
 ${s.reviews ? "Detected":"Not detected"}
 
+Address:
+${s.address ? "Detected":"Not detected"}
+
 Google Maps:
 ${s.maps ? "Detected":"Not detected"}
 
@@ -2227,19 +2189,27 @@ ${s.analytics ? "Detected":"Not detected"}`
 );
 
 
-/* HIGH */
+/* PROBLEMS */
 
-section(
-"HIGH-PRIORITY PROBLEMS"
-);
+function pdfProblems(
+title,
+items
+){
 
+section(title);
 
-(data.highPriority || [])
-.forEach(
-(item,i)=>{
+if(
+items &&
+items.length
+){
+
+items.forEach(
+(item,index)=>{
 
 textBlock(
-`${i+1}. ${item.title || "Website issue"}
+`${index + 1}. ${
+item.title || "Website issue"
+}
 
 Why it matters:
 ${item.why || ""}
@@ -2251,58 +2221,62 @@ Service:
 ${item.service || ""}`
 );
 
-}
-);
+});
 
-
-/* MEDIUM */
-
-section(
-"MEDIUM-PRIORITY OPPORTUNITIES"
-);
-
-
-(data.mediumPriority || [])
-.forEach(
-(item,i)=>{
+}else{
 
 textBlock(
-`${i+1}. ${item.title || "Website opportunity"}
-
-Why it matters:
-${item.why || ""}
-
-Recommended fix:
-${item.fix || ""}
-
-Service:
-${item.service || ""}`
+"None detected."
 );
 
 }
+
+}
+
+
+pdfProblems(
+"HIGH-PRIORITY PROBLEMS",
+data.highPriority || []
+);
+
+pdfProblems(
+"MEDIUM-PRIORITY OPPORTUNITIES",
+data.mediumPriority || []
+);
+
+pdfProblems(
+"LOW-PRIORITY OPPORTUNITIES",
+data.lowPriority || []
 );
 
 
-/* LOW */
+/* STRENGTHS */
 
 section(
-"LOW-PRIORITY OPPORTUNITIES"
+"CURRENT STRENGTHS"
 );
 
+if(
+data.strengths &&
+data.strengths.length
+){
 
-(data.lowPriority || [])
-.forEach(
-(item,i)=>{
+data.strengths.forEach(
+item=>{
 
 textBlock(
-`${i+1}. ${item.title || "Website opportunity"}
+"✓ " + item
+);
 
-Recommended fix:
-${item.fix || ""}`
+});
+
+}else{
+
+textBlock(
+"No major strengths detected."
 );
 
 }
-);
 
 
 /* REVENUE */
@@ -2312,15 +2286,13 @@ if(data.revenue){
 const r =
 data.revenue;
 
-
 section(
 "REVENUE OPPORTUNITY"
 );
 
-
 textBlock(
 `Monthly Visitors:
-${r.visitors || 0}
+${r.visitors ?? 0}
 
 Current Conversion:
 ${r.currentConversion ??
@@ -2328,10 +2300,19 @@ r.conversion ??
 0}%
 
 Average Customer Value:
-$${Number(r.value || 0).toFixed(2)}
+$${Number(
+r.value || 0
+).toFixed(2)}
+
+Estimated Customers:
+${Number(
+r.customers || 0
+).toFixed(1)}
 
 Current Estimated Revenue:
-$${Number(r.currentRevenue || 0).toFixed(2)}
+$${Number(
+r.currentRevenue || 0
+).toFixed(2)}
 
 Potential Additional Revenue:
 $${Number(
@@ -2344,24 +2325,48 @@ r.estimatedAdditionalHigh ??
 }
 
 
+/* SERVICES */
+
+section(
+"AVAILABLE SERVICES"
+);
+
+[
+"SEO optimization",
+"Technical SEO",
+"Website conversion optimization",
+"Lead-generation setup",
+"WhatsApp integration",
+"Local SEO",
+"Analytics and conversion tracking",
+"Website technical fixes"
+].forEach(
+item=>{
+
+textBlock(
+"• " + item
+);
+
+});
+
+
 /* IMPORTANT */
 
 section(
 "IMPORTANT"
 );
 
-
 textBlock(
 "This report is based on publicly accessible website information. Private Google Analytics, Search Console, CRM, advertising and financial information is not accessed. Actual website changes require explicit owner authorization and appropriate platform integration."
 );
 
 
+/* FOOTER */
+
 textBlock(
 "Prepared by JP Digital AI"
 );
 
-
-/* SAVE */
 
 const filename =
 "JP-Business-Growth-Report-" +
@@ -2377,7 +2382,5 @@ filename
 
 });
 
-</script>
-
-</body>
-   </html>
+</script></body>
+                                                                                                             </html>
