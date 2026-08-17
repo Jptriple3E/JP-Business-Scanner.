@@ -1,3 +1,5 @@
+JP Business Scanner — V11 + V12 Connected
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,206 +7,52 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>JP Business Scanner</title>
 
-<!-- PDF library -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <style>
 *{box-sizing:border-box}
-
-body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:#f4f7fb;
-  color:#172033;
-}
-
-.container{
-  width:92%;
-  max-width:1000px;
-  margin:35px auto;
-}
-
-.hero{
-  text-align:center;
-  margin-bottom:30px;
-}
-
-.hero h1{
-  font-size:36px;
-  margin-bottom:10px;
-}
-
-.hero p{
-  color:#667085;
-  font-size:17px;
-  line-height:1.6;
-}
-
-.card{
-  background:#fff;
-  padding:25px;
-  border-radius:18px;
-  box-shadow:0 8px 30px rgba(0,0,0,.07);
-  margin-bottom:22px;
-}
-
-label{
-  display:block;
-  font-weight:bold;
-  margin-top:16px;
-  margin-bottom:7px;
-}
-
-input{
-  width:100%;
-  padding:14px;
-  border:1px solid #d0d5dd;
-  border-radius:10px;
-  font-size:16px;
-}
-
-button{
-  width:100%;
-  padding:15px;
-  margin-top:22px;
-  border:0;
-  border-radius:10px;
-  background:#111827;
-  color:#fff;
-  font-size:17px;
-  font-weight:bold;
-  cursor:pointer;
-}
-
+body{margin:0;font-family:Arial,sans-serif;background:#f4f7fb;color:#172033}
+.container{width:92%;max-width:1000px;margin:35px auto}
+.hero{text-align:center;margin-bottom:30px}
+.hero h1{font-size:36px;margin-bottom:10px}
+.hero p{color:#667085;font-size:17px;line-height:1.6}
+.card{background:#fff;padding:25px;border-radius:18px;box-shadow:0 8px 30px rgba(0,0,0,.07);margin-bottom:22px}
+label{display:block;font-weight:bold;margin-top:16px;margin-bottom:7px}
+input{width:100%;padding:14px;border:1px solid #d0d5dd;border-radius:10px;font-size:16px}
+button{width:100%;padding:15px;margin-top:22px;border:0;border-radius:10px;background:#111827;color:#fff;font-size:17px;font-weight:bold;cursor:pointer}
 button:disabled{opacity:.6}
-
-#status{
-  text-align:center;
-  font-weight:bold;
-  margin:20px 0;
-}
-
+#status{text-align:center;font-weight:bold;margin:20px 0}
 #reportArea{display:none}
-
-.score{
-  text-align:center;
-  padding:25px;
-}
-
-.scoreNumber{
-  font-size:64px;
-  font-weight:bold;
-}
-
-.scoreLabel{
-  font-size:18px;
-  color:#667085;
-}
-
-.rating{
-  margin-top:8px;
-  font-size:18px;
-  font-weight:bold;
-}
-
-.sectionTitle{
-  font-size:21px;
-  margin-bottom:15px;
-}
-
-.reportBox{
-  line-height:1.7;
-  font-size:15px;
-}
-
-.reportSection{
-  margin-bottom:25px;
-}
-
-.reportSection h3{
-  margin-bottom:10px;
-}
-
-.reportItem{
-  padding:14px;
-  border-radius:10px;
-  background:#f8fafc;
-  margin-bottom:10px;
-  border-left:4px solid #111827;
-}
-
-.reportItem strong{
-  display:block;
-  margin-bottom:6px;
-}
-
-.snapshot{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:10px;
-}
-
-.snapshotItem{
-  background:#f8fafc;
-  padding:12px;
-  border-radius:10px;
-}
-
-.snapshotItem strong{
-  display:block;
-  margin-bottom:5px;
-}
-
-.breakdown{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:10px;
-}
-
-.breakdownItem{
-  text-align:center;
-  background:#f8fafc;
-  padding:15px;
-  border-radius:10px;
-}
-
-.breakdownItem strong{
-  display:block;
-  font-size:22px;
-}
-
-.download{
-  background:#067647;
-  margin-top:15px;
-}
-
+.score{text-align:center;padding:25px}
+.scoreNumber{font-size:64px;font-weight:bold}
+.scoreLabel{font-size:18px;color:#667085}
+.rating{margin-top:8px;font-size:18px;font-weight:bold}
+.sectionTitle{font-size:21px;margin-bottom:15px}
+.reportBox{line-height:1.7;font-size:15px}
+.reportSection{margin-bottom:25px}
+.reportSection h3{margin-bottom:10px}
+.reportItem{padding:14px;border-radius:10px;background:#f8fafc;margin-bottom:10px;border-left:4px solid #111827}
+.reportItem strong{display:block;margin-bottom:6px}
+.snapshot{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.snapshotItem{background:#f8fafc;padding:12px;border-radius:10px}
+.snapshotItem strong{display:block;margin-bottom:5px}
+.breakdown{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.breakdownItem{text-align:center;background:#f8fafc;padding:15px;border-radius:10px}
+.breakdownItem strong{display:block;font-size:22px}
+.download{background:#067647;margin-top:15px}
 .error{color:#b42318}
 .success{color:#067647}
-
-.cta{
-  text-align:center;
-  background:#111827;
-  color:#fff;
-}
-
+.v12box{border-left-color:#7c3aed;background:#faf5ff}
+.cta{text-align:center;background:#111827;color:#fff}
 .cta h2{margin-top:0}
-
-.cta p{
-  color:#d0d5dd;
-  line-height:1.6;
-}
-
-.cta button{
-  background:#fff;
-  color:#111827;
-}
-
+.cta p{color:#d0d5dd;line-height:1.6}
+.cta button{background:#fff;color:#111827}
 @media(max-width:600px){
-  .container{margin:20px auto}
-  .hero h1{font-size:28px}
-  .card{padding:18px}
-  .scoreNumber{font-size:52px}
-  .snapshot,.breakdown{grid-template-columns:1fr}
+.container{margin:20px auto}
+.hero h1{font-size:28px}
+.card{padding:18px}
+.scoreNumber{font-size:52px}
+.snapshot,.breakdown{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -284,28 +132,28 @@ GET THESE ISSUES FIXED
 
 <script>
 
-const API_URL =
+/* =========================================
+   JP BUSINESS SCANNER
+   V11 + V12
+   ========================================= */
+
+const V11_API =
 "https://jp-business-scanner-v10.emmanueleboh219.workers.dev/";
 
-const scanButton =
-document.getElementById("scanButton");
+const V12_API =
+"https://jp-business-fixer-v12.emmanueleboh219.workers.dev/";
 
-const status =
-document.getElementById("status");
 
-const reportArea =
-document.getElementById("reportArea");
-
-const report =
-document.getElementById("report");
-
-const score =
-document.getElementById("score");
-
-const rating =
-document.getElementById("rating");
+const scanButton=document.getElementById("scanButton");
+const status=document.getElementById("status");
+const reportArea=document.getElementById("reportArea");
+const report=document.getElementById("report");
+const score=document.getElementById("score");
+const rating=document.getElementById("rating");
 
 let latestResult=null;
+let latestV12=null;
+
 
 function escapeHTML(value){
 return String(value ?? "")
@@ -316,9 +164,58 @@ return String(value ?? "")
 .replace(/'/g,"&#039;");
 }
 
-function displayReport(data){
+
+function addProblems(html,title,items){
+
+html+=`
+<div class="reportSection">
+<h3>${escapeHTML(title)}</h3>
+`;
+
+if(items && items.length){
+
+items.forEach((item,index)=>{
+
+html+=`
+<div class="reportItem">
+<strong>${index+1}. ${escapeHTML(item.title || "Website issue")}</strong>
+
+${item.why ? `
+<div><b>Why it matters:</b>
+${escapeHTML(item.why)}
+</div>`:""}
+
+${item.fix ? `
+<div><b>Recommended fix:</b>
+${escapeHTML(item.fix)}
+</div>`:""}
+
+${item.service ? `
+<div><b>Service:</b>
+${escapeHTML(item.service)}
+</div>`:""}
+
+</div>
+`;
+
+});
+
+}else{
+
+html+="<p>None detected.</p>";
+
+}
+
+html+="</div>";
+
+return html;
+}
+
+
+function displayReport(data,v12){
 
 latestResult=data;
+latestV12=v12;
 
 score.textContent=(data.score ?? "--")+"/100";
 rating.textContent=data.rating || "";
@@ -332,49 +229,58 @@ html+=`
 </div>
 `;
 
+
+/* SCORE */
+
 if(data.breakdown){
 
 html+=`
 <div class="reportSection">
 <h3>Score Breakdown</h3>
+
 <div class="breakdown">
 
 <div class="breakdownItem">
-<strong>${data.breakdown.seo}/30</strong>
+<strong>${data.breakdown.seo ?? 0}</strong>
 SEO & Technical
 </div>
 
 <div class="breakdownItem">
-<strong>${data.breakdown.lead}/40</strong>
+<strong>${data.breakdown.lead ?? 0}</strong>
 Lead Generation
 </div>
 
 <div class="breakdownItem">
-<strong>${data.breakdown.trust}/30</strong>
+<strong>${data.breakdown.trust ?? 0}</strong>
 Trust & Growth
 </div>
 
 </div>
 </div>
 `;
+
 }
+
+
+/* SNAPSHOT */
 
 const s=data.snapshot || {};
 
 html+=`
 <div class="reportSection">
+
 <h3>Website Snapshot</h3>
 
 <div class="snapshot">
 
 <div class="snapshotItem">
 <strong>Page Title</strong>
-${escapeHTML(s.title)}
+${escapeHTML(s.title || "Missing")}
 </div>
 
 <div class="snapshotItem">
 <strong>Meta Description</strong>
-${escapeHTML(s.description)}
+${escapeHTML(s.description || "Missing")}
 </div>
 
 <div class="snapshotItem">
@@ -466,47 +372,29 @@ ${s.analytics ? "Detected":"Not detected"}
 </div>
 `;
 
-function addProblems(title,items){
 
-html+=`
-<div class="reportSection">
-<h3>${title}</h3>
-`;
+/* PROBLEMS */
 
-if(items && items.length){
-
-items.forEach((item,index)=>{
-
-html+=`
-<div class="reportItem">
-<strong>${index+1}. ${escapeHTML(item.title)}</strong>
-<div><b>Why it matters:</b> ${escapeHTML(item.why)}</div>
-<div><b>Recommended fix:</b> ${escapeHTML(item.fix)}</div>
-<div><b>Service:</b> ${escapeHTML(item.service)}</div>
-</div>
-`;
-
-});
-
-}else{
-
-html+="<p>None detected.</p>";
-
-}
-
-html+="</div>";
-
-}
-
-addProblems(
+html=addProblems(
+html,
 "High-Priority Problems",
 data.highPriority || []
 );
 
-addProblems(
+html=addProblems(
+html,
 "Medium-Priority Opportunities",
 data.mediumPriority || []
 );
+
+html=addProblems(
+html,
+"Low-Priority Opportunities",
+data.lowPriority || []
+);
+
+
+/* STRENGTHS */
 
 html+=`
 <div class="reportSection">
@@ -516,18 +404,25 @@ html+=`
 if(data.strengths && data.strengths.length){
 
 data.strengths.forEach(item=>{
+
 html+=`
 <div class="reportItem">
 ✓ ${escapeHTML(item)}
 </div>
 `;
+
 });
 
 }else{
+
 html+="<p>No major strengths detected.</p>";
+
 }
 
 html+="</div>";
+
+
+/* REVENUE */
 
 if(data.revenue){
 
@@ -535,44 +430,162 @@ const r=data.revenue;
 
 html+=`
 <div class="reportSection">
+
 <h3>Revenue Opportunity</h3>
 
 <div class="reportItem">
 
-<p><b>Monthly Visitors:</b> ${r.visitors}</p>
-<p><b>Current Conversion:</b> ${r.conversion}%</p>
-<p><b>Average Customer Value:</b> $${Number(r.value).toFixed(2)}</p>
-<p><b>Estimated Customers:</b> ${Number(r.customers).toFixed(1)}</p>
-<p><b>Estimated Monthly Revenue:</b> $${Number(r.currentRevenue).toFixed(2)}</p>
-<p><b>Potential Additional Revenue:</b> $${Number(r.additionalRevenue).toFixed(2)}</p>
-
-</div>
-</div>
-`;
-
-}else{
-
-html+=`
-<div class="reportSection">
-<h3>Revenue Opportunity</h3>
-
-<p>No revenue assumptions were provided.</p>
+<p>
+<b>Monthly Visitors:</b>
+${r.visitors}
+</p>
 
 <p>
-Add monthly visitors, conversion rate and average customer
-value to generate an illustrative revenue opportunity.
+<b>Current Conversion:</b>
+${r.currentConversion ?? r.conversion ?? 0}%
 </p>
+
+<p>
+<b>Average Customer Value:</b>
+$${Number(r.value || 0).toFixed(2)}
+</p>
+
+<p>
+<b>Current Estimated Revenue:</b>
+$${Number(
+r.currentRevenue || 0
+).toFixed(2)}
+</p>
+
+<p>
+<b>Estimated Additional Revenue:</b>
+$${Number(
+r.additionalRevenue ??
+r.estimatedAdditionalHigh ??
+0
+).toFixed(2)}
+</p>
+
+</div>
 
 </div>
 `;
 
 }
 
+
+/* =========================================
+   V12 ADVANCED MODULES
+   ========================================= */
+
+if(v12){
+
 html+=`
 <div class="reportSection">
+
+<h3>V12 Advanced Website Fix System</h3>
+
+<div class="reportItem v12box">
+
+<strong>
+V12 analysis connected
+</strong>
+
+<p>
+The advanced fixer Worker has been contacted
+for this website.
+</p>
+
+`;
+
+if(v12.status){
+
+html+=`
+<p>
+<b>Status:</b>
+${escapeHTML(v12.status)}
+</p>
+`;
+
+}
+
+if(v12.message){
+
+html+=`
+<p>
+<b>Message:</b>
+${escapeHTML(v12.message)}
+</p>
+`;
+
+}
+
+
+/* MODULE STATUS */
+
+if(v12.modules){
+
+html+=`
+<p><b>Available Modules</b></p>
+`;
+
+Object.entries(v12.modules).forEach(([name,module])=>{
+
+if(!module) return;
+
+const label=name
+.replace(/([A-Z])/g," $1")
+.replace(/^./,x=>x.toUpperCase());
+
+html+=`
+<div>
+${escapeHTML(label)}:
+${escapeHTML(
+module.status ||
+(module.enabled ? "Active":"Unavailable")
+)}
+</div>
+`;
+
+});
+
+}
+
+
+/* FIX SYSTEM */
+
+if(v12.fixSystem){
+
+html+=`
+<p>
+<b>Fix System:</b>
+${escapeHTML(
+v12.fixSystem.message ||
+v12.fixSystem.mode ||
+"Available with authorization."
+)}
+</p>
+`;
+
+}
+
+html+=`
+</div>
+</div>
+`;
+
+}
+
+
+/* SERVICES */
+
+html+=`
+<div class="reportSection">
+
 <h3>Business Services You Can Offer</h3>
 
 <div class="reportItem">SEO optimization</div>
+<div class="reportItem">Technical SEO</div>
 <div class="reportItem">Website conversion optimization</div>
 <div class="reportItem">Lead-generation setup</div>
 <div class="reportItem">WhatsApp integration</div>
@@ -580,60 +593,45 @@ html+=`
 <div class="reportItem">Local SEO</div>
 <div class="reportItem">Analytics and conversion tracking</div>
 <div class="reportItem">Website technical fixes</div>
+<div class="reportItem">Google Maps integration</div>
+<div class="reportItem">Structured data implementation</div>
 
 </div>
+`;
 
+
+/* IMPORTANT */
+
+html+=`
 <div class="reportSection">
+
 <h3>Important</h3>
 
 <p>
-This report is based on publicly accessible website information.
-It cannot see private Google Analytics, Search Console, CRM,
-advertising data or actual revenue. Some JavaScript-rendered
-content may not be detected.
+This report is based on publicly accessible website
+information. Private Google Analytics, Search Console,
+CRM, advertising and financial information is not accessed.
+Actual website changes require explicit owner authorization
+and the appropriate platform integration.
 </p>
 
 </div>
 `;
 
 report.innerHTML=html;
-}
-
-scanButton.addEventListener("click",async function(){
-
-const website=document.getElementById("website").value.trim();
-const visitors=document.getElementById("visitors").value.trim();
-const conversion=document.getElementById("conversion").value.trim();
-const value=document.getElementById("value").value.trim();
-
-if(!website){
-
-status.textContent="Please enter a business website.";
-status.className="error";
-return;
 
 }
 
-let cleanWebsite=website;
 
-if(
-!cleanWebsite.startsWith("http://") &&
-!cleanWebsite.startsWith("https://")
-){
-cleanWebsite="https://"+cleanWebsite;
-}
+/* =========================================
+   API HELPER
+   ========================================= */
 
-scanButton.disabled=true;
-scanButton.textContent="SCANNING...";
-status.textContent="Analyzing website...";
-status.className="";
-reportArea.style.display="none";
+async function callScanner(apiBase,website,visitors,conversion,value){
 
-try{
+const api=new URL(apiBase);
 
-const api=new URL(API_URL);
-
-api.searchParams.set("url",cleanWebsite);
+api.searchParams.set("url",website);
 
 if(visitors)
 api.searchParams.set("visitors",visitors);
@@ -651,25 +649,169 @@ const text=await response.text();
 let result;
 
 try{
+
 result=JSON.parse(text);
+
 }catch{
+
 throw new Error(
-text || "Invalid response from scanner."
+"Invalid response from scanner."
 );
+
 }
 
 if(!response.ok || result.error){
+
 throw new Error(
 result.message ||
-"The scanner could not complete the scan."
+"Scanner request failed."
 );
+
 }
 
-displayReport(result);
+return result;
+
+}
+
+
+/* =========================================
+   SCAN
+   ========================================= */
+
+scanButton.addEventListener(
+"click",
+async function(){
+
+const website=
+document.getElementById("website")
+.value.trim();
+
+const visitors=
+document.getElementById("visitors")
+.value.trim();
+
+const conversion=
+document.getElementById("conversion")
+.value.trim();
+
+const value=
+document.getElementById("value")
+.value.trim();
+
+
+if(!website){
+
+status.textContent=
+"Please enter a business website.";
+
+status.className="error";
+
+return;
+
+}
+
+
+let cleanWebsite=website;
+
+if(
+!cleanWebsite.startsWith("http://") &&
+!cleanWebsite.startsWith("https://")
+){
+
+cleanWebsite=
+"https://"+cleanWebsite;
+
+}
+
+
+scanButton.disabled=true;
+scanButton.textContent="SCANNING...";
+status.textContent=
+"Running V11 website audit...";
+
+status.className="";
+reportArea.style.display="none";
+
+
+let v11=null;
+let v12=null;
+
+
+/* V11 */
+
+try{
+
+v11=await callScanner(
+V11_API,
+cleanWebsite,
+visitors,
+conversion,
+value
+);
+
+}catch(error){
+
+status.textContent=
+"V11 scan failed. Trying V12...";
+
+}
+
+
+/* V12 */
+
+try{
+
+status.textContent=
+"Running V12 advanced analysis...";
+
+v12=await callScanner(
+V12_API,
+cleanWebsite,
+visitors,
+conversion,
+value
+);
+
+}catch(error){
+
+/*
+ V12 failure does NOT destroy
+ the V11 report.
+ */
+
+v12={
+status:"V12 request failed",
+message:error.message
+};
+
+}
+
+
+/* FINAL */
+
+if(!v11){
+
+status.textContent=
+"Scan failed: V11 could not complete the audit.";
+
+status.className="error";
+
+scanButton.disabled=false;
+scanButton.textContent=
+"SCAN A BUSINESS WEBSITE";
+
+return;
+
+}
+
+
+displayReport(v11,v12);
 
 reportArea.style.display="block";
 
-status.textContent="SCAN COMPLETE";
+status.textContent=
+"SCAN COMPLETE — V11 + V12";
+
 status.className="success";
 
 window.scrollTo({
@@ -677,40 +819,44 @@ top:reportArea.offsetTop,
 behavior:"smooth"
 });
 
-}catch(error){
-
-status.textContent=
-"Scan failed: "+error.message;
-
-status.className="error";
-
-}finally{
 
 scanButton.disabled=false;
-scanButton.textContent="SCAN A BUSINESS WEBSITE";
+scanButton.textContent=
+"SCAN A BUSINESS WEBSITE";
 
 }
+);
 
-});
 
-/* PROFESSIONAL PDF */
+/* =========================================
+   PDF
+   ========================================= */
 
 document.getElementById("downloadButton")
-.addEventListener("click",function(){
+.addEventListener(
+"click",
+function(){
 
 if(!latestResult){
 
-alert("Please scan a website first.");
+alert(
+"Please scan a website first."
+);
+
 return;
 
 }
 
 if(!window.jspdf){
 
-alert("PDF generator is still loading. Please try again.");
+alert(
+"PDF generator is still loading. Please try again."
+);
+
 return;
 
 }
+
 
 const {jsPDF}=window.jspdf;
 
@@ -718,29 +864,44 @@ const data=latestResult;
 
 const doc=new jsPDF();
 
-const pageWidth=doc.internal.pageSize.getWidth();
-const pageHeight=doc.internal.pageSize.getHeight();
+const pageWidth=
+doc.internal.pageSize.getWidth();
+
+const pageHeight=
+doc.internal.pageSize.getHeight();
 
 let y=20;
+
 
 function header(){
 
 doc.setFontSize(20);
 doc.setFont(undefined,"bold");
-doc.text("JP DIGITAL AI",20,y);
+
+doc.text(
+"JP DIGITAL AI",
+20,
+y
+);
 
 y+=9;
 
 doc.setFontSize(15);
-doc.text("BUSINESS WEBSITE GROWTH REPORT",20,y);
+
+doc.text(
+"BUSINESS WEBSITE GROWTH REPORT",
+20,
+y
+);
 
 y+=10;
 
 doc.setFont(undefined,"normal");
+
 doc.setFontSize(10);
 
 doc.text(
-"Professional Website Audit",
+"V11 + V12 Professional Website Audit",
 20,
 y
 );
@@ -749,13 +910,26 @@ y+=12;
 
 }
 
+
 function line(){
 
-doc.setDrawColor(210,210,210);
-doc.line(20,y,pageWidth-20,y);
+doc.setDrawColor(
+210,
+210,
+210
+);
+
+doc.line(
+20,
+y,
+pageWidth-20,
+y
+);
+
 y+=8;
 
 }
+
 
 function section(title){
 
@@ -768,7 +942,12 @@ y=20;
 
 doc.setFontSize(13);
 doc.setFont(undefined,"bold");
-doc.text(title,20,y);
+
+doc.text(
+title,
+20,
+y
+);
 
 y+=8;
 
@@ -777,14 +956,18 @@ doc.setFontSize(10);
 
 }
 
+
 function textBlock(text){
 
-const lines=doc.splitTextToSize(
+const lines=
+doc.splitTextToSize(
 String(text),
 pageWidth-40
 );
 
-for(const lineText of lines){
+for(
+const lineText of lines
+){
 
 if(y>pageHeight-20){
 
@@ -793,7 +976,12 @@ y=20;
 
 }
 
-doc.text(lineText,20,y);
+doc.text(
+lineText,
+20,
+y
+);
+
 y+=5;
 
 }
@@ -802,16 +990,22 @@ y+=3;
 
 }
 
+
 header();
+
 
 section("WEBSITE");
 
-textBlock(data.website);
+textBlock(
+data.website
+);
+
 
 section("OVERALL SCORE");
 
 doc.setFontSize(24);
 doc.setFont(undefined,"bold");
+
 doc.text(
 `${data.score}/100`,
 20,
@@ -827,139 +1021,268 @@ textBlock(
 data.rating || ""
 );
 
-section("SCORE BREAKDOWN");
 
-textBlock(
-`SEO & Technical: ${data.breakdown.seo}/30
-Lead Generation: ${data.breakdown.lead}/40
-Trust & Growth: ${data.breakdown.trust}/30`
+if(data.breakdown){
+
+section(
+"SCORE BREAKDOWN"
 );
 
-section("WEBSITE SNAPSHOT");
+textBlock(
+`SEO & Technical:
+${data.breakdown.seo}
 
-const s=data.snapshot || {};
+Lead Generation:
+${data.breakdown.lead}
+
+Trust & Growth:
+${data.breakdown.trust}
+
+Local:
+${data.breakdown.local ?? "N/A"}`
+);
+
+}
+
+
+section(
+"WEBSITE SNAPSHOT"
+);
+
+const s=
+data.snapshot || {};
 
 const snapshotLines=[
+
 `Page Title: ${s.title}`,
-`Meta Description: ${s.description}`,
+
+`Meta Description:
+${s.description}`,
+
 `H1 Headings: ${s.h1}`,
+
 `H2 Headings: ${s.h2}`,
-`Mobile Viewport: ${s.mobile ? "Detected":"Not detected"}`,
-`HTTPS: ${s.https ? "Yes":"No"}`,
+
+`Mobile Viewport:
+${s.mobile ? "Detected":"Not detected"}`,
+
+`HTTPS:
+${s.https ? "Yes":"No"}`,
+
 `Images: ${s.images}`,
-`Missing ALT Text: ${s.missingAlt}`,
-`Phone: ${s.phone ? "Detected":"Not detected"}`,
-`Email: ${s.email ? "Detected":"Not detected"}`,
-`WhatsApp: ${s.whatsapp ? "Detected":"Not detected"}`,
-`Contact Form: ${s.form ? "Detected":"Not detected"}`,
-`Booking: ${s.booking ? "Detected":"Not detected"}`,
-`CTA: ${s.cta ? "Detected":"Not detected"}`,
-`Reviews: ${s.reviews ? "Detected":"Not detected"}`,
-`Address: ${s.address ? "Detected":"Not detected"}`,
-`Google Maps: ${s.maps ? "Detected":"Not detected"}`,
-`Structured Data: ${s.schema ? "Detected":"Not detected"}`,
-`Analytics: ${s.analytics ? "Detected":"Not detected"}`
+
+`Missing ALT Text:
+${s.missingAlt}`,
+
+`Phone:
+${s.phone ? "Detected":"Not detected"}`,
+
+`Email:
+${s.email ? "Detected":"Not detected"}`,
+
+`WhatsApp:
+${s.whatsapp ? "Detected":"Not detected"}`,
+
+`Contact Form:
+${s.form ? "Detected":"Not detected"}`,
+
+`Booking:
+${s.booking ? "Detected":"Not detected"}`,
+
+`CTA:
+${s.cta ? "Detected":"Not detected"}`,
+
+`Reviews:
+${s.reviews ? "Detected":"Not detected"}`,
+
+`Google Maps:
+${s.maps ? "Detected":"Not detected"}`,
+
+`Structured Data:
+${s.schema ? "Detected":"Not detected"}`,
+
+`Analytics:
+${s.analytics ? "Detected":"Not detected"}`
 ];
 
-textBlock(snapshotLines.join("\n"));
+textBlock(
+snapshotLines.join("\n")
+);
 
-section("HIGH-PRIORITY PROBLEMS");
 
-if(data.highPriority && data.highPriority.length){
+section(
+"HIGH-PRIORITY PROBLEMS"
+);
 
-data.highPriority.forEach((item,i)=>{
+if(
+data.highPriority &&
+data.highPriority.length
+){
+
+data.highPriority.forEach(
+(item,i)=>{
 
 textBlock(
 `${i+1}. ${item.title}
-Why it matters: ${item.why}
-Recommended fix: ${item.fix}
-Service: ${item.service}`
+
+Why it matters:
+${item.why}
+
+Recommended fix:
+${item.fix}
+
+Service:
+${item.service}`
 );
 
-});
+}
+);
 
 }else{
 
-textBlock("No high-priority problems detected.");
+textBlock(
+"No high-priority problems detected."
+);
 
 }
 
-section("MEDIUM-PRIORITY OPPORTUNITIES");
 
-if(data.mediumPriority && data.mediumPriority.length){
+section(
+"MEDIUM-PRIORITY OPPORTUNITIES"
+);
 
-data.mediumPriority.forEach((item,i)=>{
+if(
+data.mediumPriority &&
+data.mediumPriority.length
+){
+
+data.mediumPriority.forEach(
+(item,i)=>{
 
 textBlock(
 `${i+1}. ${item.title}
-Why it matters: ${item.why}
-Recommended fix: ${item.fix}
-Service: ${item.service}`
+
+Why it matters:
+${item.why}
+
+Recommended fix:
+${item.fix}
+
+Service:
+${item.service}`
 );
 
-});
-
-}else{
-
-textBlock("No medium-priority opportunities detected.");
-
 }
-
-section("CURRENT STRENGTHS");
-
-if(data.strengths && data.strengths.length){
-
-data.strengths.forEach(item=>{
-textBlock("✓ "+item);
-});
-
-}else{
-
-textBlock("No major strengths detected.");
-
-}
-
-section("REVENUE OPPORTUNITY");
-
-if(data.revenue){
-
-const r=data.revenue;
-
-textBlock(
-`Monthly Visitors: ${r.visitors}
-Current Conversion: ${r.conversion}%
-Average Customer Value: $${Number(r.value).toFixed(2)}
-Estimated Customers: ${Number(r.customers).toFixed(1)}
-Estimated Monthly Revenue: $${Number(r.currentRevenue).toFixed(2)}
-Potential Additional Revenue: $${Number(r.additionalRevenue).toFixed(2)}`
 );
 
 }else{
 
 textBlock(
-"No revenue assumptions were provided."
+"No medium-priority opportunities detected."
 );
 
 }
 
-section("RECOMMENDED SERVICES");
 
-[
-"SEO optimization",
-"Website conversion optimization",
-"Lead-generation setup",
-"WhatsApp integration",
-"Review/testimonial implementation",
-"Local SEO",
-"Analytics and conversion tracking",
-"Website technical fixes"
-].forEach(item=>textBlock("• "+item));
+section(
+"LOW-PRIORITY OPPORTUNITIES"
+);
 
-section("IMPORTANT");
+if(
+data.lowPriority &&
+data.lowPriority.length
+){
+
+data.lowPriority.forEach(
+(item,i)=>{
 
 textBlock(
-"This report is based on publicly accessible website information. It cannot see private Google Analytics, Search Console, CRM, advertising data or actual revenue. Some JavaScript-rendered content may not be detected."
+`${i+1}. ${item.title}
+
+Why it matters:
+${item.why || ""}
+
+Recommended fix:
+${item.fix || ""}
+
+Service:
+${item.service || ""}`
 );
+
+}
+);
+
+}else{
+
+textBlock(
+"No low-priority opportunities detected."
+);
+
+}
+
+
+section(
+"CURRENT STRENGTHS"
+);
+
+if(
+data.strengths &&
+data.strengths.length
+){
+
+data.strengths.forEach(
+item=>
+textBlock("✓ "+item)
+);
+
+}else{
+
+textBlock(
+"No major strengths detected."
+);
+
+}
+
+
+if(latestV12){
+
+section(
+"V12 ADVANCED MODULE"
+);
+
+textBlock(
+"V12 advanced fixer analysis was requested for this website."
+);
+
+if(latestV12.status){
+
+textBlock(
+"Status: "+
+latestV12.status
+);
+
+}
+
+if(latestV12.message){
+
+textBlock(
+"Message: "+
+latestV12.message
+);
+
+}
+
+}
+
+
+section(
+"IMPORTANT"
+);
+
+textBlock(
+"This report is based on publicly accessible website information. Private Google Analytics, Search Console, CRM, advertising and financial information is not accessed. Actual website modifications require explicit owner authorization and the appropriate platform integration."
+);
+
 
 line();
 
@@ -969,28 +1292,35 @@ textBlock(
 "Prepared by JP Digital AI"
 );
 
+
 const filename=
 "JP-Business-Growth-Report-"+
-
 new Date()
 .toISOString()
 .slice(0,10)+
-
 ".pdf";
+
 
 doc.save(filename);
 
-});
+}
+);
 
-/* CONTACT BUTTON */
+
+/* =========================================
+   CONTACT
+   ========================================= */
 
 document.getElementById("fixButton")
-.addEventListener("click",function(){
+.addEventListener(
+"click",
+function(){
 
 window.location.href=
 "mailto:jpdigitalai@gmail.com?subject=Website%20Growth%20Fix";
 
-});
+}
+);
 
 </script>
 
